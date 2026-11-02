@@ -295,10 +295,10 @@ public class Clientes extends javax.swing.JFrame {
 
         SideElement.setBackground(new java.awt.Color(255, 255, 255));
         SideElement.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(215, 210, 208), 1, true));
-        SideElement.setMaximumSize(new java.awt.Dimension(320, 32767));
-        SideElement.setMinimumSize(new java.awt.Dimension(320, 100));
+        SideElement.setMaximumSize(new java.awt.Dimension(360, 32767));
+        SideElement.setMinimumSize(new java.awt.Dimension(360, 100));
         SideElement.setOpaque(false);
-        SideElement.setPreferredSize(new java.awt.Dimension(320, 183));
+        SideElement.setPreferredSize(new java.awt.Dimension(360, 183));
         SideElement.setLayout(new javax.swing.BoxLayout(SideElement, javax.swing.BoxLayout.Y_AXIS));
 
         jPanel11.setBorder(javax.swing.BorderFactory.createEmptyBorder(16, 16, 16, 16));
@@ -332,7 +332,7 @@ public class Clientes extends javax.swing.JFrame {
         jPanel16.setLayout(jPanel16Layout);
         jPanel16Layout.setHorizontalGroup(
             jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 286, Short.MAX_VALUE)
+            .addGap(0, 326, Short.MAX_VALUE)
         );
         jPanel16Layout.setVerticalGroup(
             jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -342,28 +342,33 @@ public class Clientes extends javax.swing.JFrame {
         jPanel15.add(jPanel16);
 
         jScrollPane2.setBackground(new java.awt.Color(255, 255, 255));
-        jScrollPane2.setMaximumSize(new java.awt.Dimension(296, 32767));
+        jScrollPane2.setBorder(null);
+        jScrollPane2.setForeground(new java.awt.Color(255, 255, 255));
+        jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane2.setFocusTraversalKeysEnabled(false);
+        jScrollPane2.setFocusable(false);
         jScrollPane2.setMinimumSize(new java.awt.Dimension(296, 16));
-        jScrollPane2.setOpaque(false);
         jScrollPane2.setPreferredSize(new java.awt.Dimension(296, 426));
+        jScrollPane2.setVerifyInputWhenFocusTarget(false);
 
         jPanel23.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel23.setAlignmentX(0.5F);
+        jPanel23.setDoubleBuffered(false);
+        jPanel23.setEnabled(false);
+        jPanel23.setFocusTraversalKeysEnabled(false);
+        jPanel23.setFocusable(false);
         jPanel23.setMaximumSize(new java.awt.Dimension(280, 2147483647));
         jPanel23.setMinimumSize(new java.awt.Dimension(280, 456));
-        jPanel23.setOpaque(false);
-        jPanel23.setPreferredSize(new java.awt.Dimension(264, 424));
+        jPanel23.setPreferredSize(new java.awt.Dimension(296, 424));
+        jPanel23.setRequestFocusEnabled(false);
         jPanel23.setLayout(new javax.swing.BoxLayout(jPanel23, javax.swing.BoxLayout.Y_AXIS));
 
-        jPanel6.setMaximumSize(new java.awt.Dimension(264, 32767));
         jPanel6.setMinimumSize(new java.awt.Dimension(260, 208));
         jPanel6.setOpaque(false);
-        jPanel6.setPreferredSize(new java.awt.Dimension(260, 208));
+        jPanel6.setPreferredSize(new java.awt.Dimension(296, 208));
         jPanel6.setLayout(new java.awt.GridLayout(6, 1, 0, 8));
 
         jPanel8.setMaximumSize(new java.awt.Dimension(2147483647, 28));
         jPanel8.setOpaque(false);
-        jPanel8.setPreferredSize(new java.awt.Dimension(243, 28));
         jPanel8.setLayout(new javax.swing.BoxLayout(jPanel8, javax.swing.BoxLayout.LINE_AXIS));
 
         jlNombre.setFont(new java.awt.Font("Segoe UI Semibold", 0, 13)); // NOI18N
@@ -513,10 +518,9 @@ public class Clientes extends javax.swing.JFrame {
         jPanel20.setDoubleBuffered(false);
         jPanel20.setEnabled(false);
         jPanel20.setFocusable(false);
-        jPanel20.setMaximumSize(new java.awt.Dimension(260, 2147483647));
         jPanel20.setMinimumSize(new java.awt.Dimension(260, 248));
         jPanel20.setOpaque(false);
-        jPanel20.setPreferredSize(new java.awt.Dimension(260, 210));
+        jPanel20.setPreferredSize(new java.awt.Dimension(296, 210));
         jPanel20.setRequestFocusEnabled(false);
         jPanel20.setLayout(new javax.swing.BoxLayout(jPanel20, javax.swing.BoxLayout.X_AXIS));
 
@@ -531,8 +535,9 @@ public class Clientes extends javax.swing.JFrame {
         jlNombre6.setPreferredSize(new java.awt.Dimension(80, 16));
         jPanel20.add(jlNombre6);
 
+        jCalRegistro.setBackground(new java.awt.Color(255, 255, 255));
         jCalRegistro.setMinimumSize(new java.awt.Dimension(191, 240));
-        jCalRegistro.setPreferredSize(new java.awt.Dimension(191, 240));
+        jCalRegistro.setPreferredSize(new java.awt.Dimension(156, 240));
         jPanel20.add(jCalRegistro);
 
         jPanel23.add(jPanel20);
@@ -547,7 +552,7 @@ public class Clientes extends javax.swing.JFrame {
         jPanel17.setLayout(jPanel17Layout);
         jPanel17Layout.setHorizontalGroup(
             jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 286, Short.MAX_VALUE)
+            .addGap(0, 326, Short.MAX_VALUE)
         );
         jPanel17Layout.setVerticalGroup(
             jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -558,11 +563,12 @@ public class Clientes extends javax.swing.JFrame {
 
         jPanel11.add(jPanel15);
 
+        jPanel9.setBorder(javax.swing.BorderFactory.createEmptyBorder(12, 0, 0, 0));
         jPanel9.setMaximumSize(new java.awt.Dimension(32767, 88));
         jPanel9.setMinimumSize(new java.awt.Dimension(174, 88));
         jPanel9.setOpaque(false);
         jPanel9.setPreferredSize(new java.awt.Dimension(225, 96));
-        jPanel9.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 0, 8));
+        jPanel9.setLayout(new java.awt.GridLayout(2, 1, 0, 8));
 
         btnLimpiar.setBackground(new java.awt.Color(242, 241, 241));
         btnLimpiar.setFont(new java.awt.Font("Segoe UI Semibold", 0, 13)); // NOI18N

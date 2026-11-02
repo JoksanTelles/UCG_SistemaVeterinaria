@@ -9,7 +9,7 @@ public class Conexion {
     Connection con;
     String URL = "jdbc:mysql://localhost:3306/veterinaria";
     String USER = "root";
-    String PASS = "";
+    String PASS = "1234";
     
     public Connection getConnection() {
         try {
