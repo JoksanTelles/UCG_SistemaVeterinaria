@@ -1,0 +1,26 @@
+# Salidas de compilación de Ant
+
+/build/
+/dist/
+
+# Metadatos temporales y de usuario de NetBeans
+
+/nbproject/private/
+/nbproject/private.properties
+
+# Archivos de empaquetado y librerías generadas
+
+*.jar
+*.war
+*.ear
+*.class
+
+# Registros de ejecución
+
+hs\_err\_pid\*
+*.log
+
+# Archivos de sistema operativo
+
+.DS\_Store
+Thumbs.db
