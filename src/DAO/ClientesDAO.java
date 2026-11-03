@@ -90,7 +90,7 @@ public class ClientesDAO {
         String sql = """
                      UPDATE clientes
                      SET nombre = ?, apellido_p = ?, apellido_m = ?,
-                        telefono = ?, correo = ?, direccion = ?, registro = ?
+                        telefono = ?, correo = ?, direccion = ?, fecha_registro = ?
                      WHERE id_cliente = ?
                      """;
         try {

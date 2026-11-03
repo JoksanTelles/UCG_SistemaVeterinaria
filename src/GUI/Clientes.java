@@ -20,37 +20,28 @@ public class Clientes extends javax.swing.JFrame {
         initComponents();
         
         this.setLocationRelativeTo(this);
+        listarClientes();
     }
     
     public void listarClientes() {
-        List<ClientesPOJO> listaCliente = clientesDAO.listarClientes();
-        modelo = new DefaultTableModel();
-        
-        modelo.addColumn("ID");
-        modelo.addColumn("Nombre");
-        modelo.addColumn("Apellido P.");
-        modelo.addColumn("Apellido M.");
-        modelo.addColumn("Teléfono");
-        modelo.addColumn("Correo");
-        modelo.addColumn("Dirección");
-        modelo.addColumn("Fecha de registro");
-        
-        for (int i = 0; i < listaCliente.size(); i++) {
-            Object[] object = new Object[8];
+        List<ClientesPOJO> cliente = clientesDAO.listarClientes();
+        modelo = (DefaultTableModel) TablaClientes.getModel();
+        modelo.setRowCount(0);
+
+        for (int i = 0; i< cliente.size(); i++) {
+            Object[] fila = new Object[8];
             
-            object[0] = listaCliente.get(i).getIdCliente();
-            object[1] = listaCliente.get(i).getNombre();
-            object[2] = listaCliente.get(i).getApellidoP();
-            object[3] = listaCliente.get(i).getApellidoM();
-            object[4] = listaCliente.get(i).getTelefono();
-            object[5] = listaCliente.get(i).getCorreo();
-            object[6] = listaCliente.get(i).getDireccion();
-            object[7] = listaCliente.get(i).getFechaRegistro();
-            
-            modelo.addRow(object);
+            fila[0] = cliente.get(i).getIdCliente();
+            fila[1] = cliente.get(i).getNombre();
+            fila[2] = cliente.get(i).getApellidoP();
+            fila[3] = cliente.get(i).getApellidoM();
+            fila[4] = cliente.get(i).getTelefono();
+            fila[5] = cliente.get(i).getCorreo();
+            fila[6] = cliente.get(i).getDireccion();
+            fila[7] = cliente.get(i).getFechaRegistro();
+
+            modelo.addRow(fila);
         }
-        
-        TablaClientes.setModel(modelo);
     }
     
     public void limpiarCampos() {
@@ -60,7 +51,12 @@ public class Clientes extends javax.swing.JFrame {
         jtfTelefono.setText("");
         jtfCorreo.setText("");
         jtfDireccion.setText("");
-        jCalRegistro.setCalendar(null);
+        
+        jCalRegistro.setDate(new java.util.Date());
+        
+        TablaClientes.clearSelection();
+        btnCrearRegistro.setText("Crear registro");
+        
         id_actual = -1;
         estado = 1;
     }
@@ -139,9 +135,9 @@ public class Clientes extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jPanel10 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
-        jButton4 = new javax.swing.JButton();
+        btnEditar = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
-        jButton5 = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
         Footer = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         FooterLinks = new javax.swing.JPanel();
@@ -579,6 +575,7 @@ public class Clientes extends javax.swing.JFrame {
         btnLimpiar.setFocusable(false);
         btnLimpiar.setMaximumSize(new java.awt.Dimension(75000, 23));
         btnLimpiar.setPreferredSize(new java.awt.Dimension(286, 40));
+        btnLimpiar.addActionListener(this::btnLimpiarActionPerformed);
         jPanel9.add(btnLimpiar);
 
         btnCrearRegistro.setBackground(new java.awt.Color(237, 142, 54));
@@ -589,6 +586,7 @@ public class Clientes extends javax.swing.JFrame {
         btnCrearRegistro.setBorderPainted(false);
         btnCrearRegistro.setFocusable(false);
         btnCrearRegistro.setMaximumSize(new java.awt.Dimension(75000, 23));
+        btnCrearRegistro.setOpaque(true);
         btnCrearRegistro.setPreferredSize(new java.awt.Dimension(286, 40));
         btnCrearRegistro.addActionListener(this::btnCrearRegistroActionPerformed);
         jPanel9.add(btnCrearRegistro);
@@ -618,9 +616,18 @@ public class Clientes extends javax.swing.JFrame {
             new String [] {
                 "Id", "Nombre", "Apellido P.", "Apellido M.", "Teléfono", "Correo", "Dirección", "Registro"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         TablaClientes.setGridColor(new java.awt.Color(255, 255, 255));
         TablaClientes.setOpaque(false);
+        TablaClientes.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(TablaClientes);
 
         TableContainerPadding.add(jScrollPane1);
@@ -658,14 +665,15 @@ public class Clientes extends javax.swing.JFrame {
 
         jPanel10.add(jPanel7);
 
-        jButton4.setBackground(new java.awt.Color(231, 228, 227));
-        jButton4.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(89, 79, 76));
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/SmIcon_Editar.png"))); // NOI18N
-        jButton4.setText("Editar");
-        jButton4.setBorderPainted(false);
-        jButton4.setMargin(new java.awt.Insets(6, 8, 6, 10));
-        jPanel10.add(jButton4);
+        btnEditar.setBackground(new java.awt.Color(231, 228, 227));
+        btnEditar.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        btnEditar.setForeground(new java.awt.Color(89, 79, 76));
+        btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/SmIcon_Editar.png"))); // NOI18N
+        btnEditar.setText("Editar");
+        btnEditar.setBorderPainted(false);
+        btnEditar.setMargin(new java.awt.Insets(6, 8, 6, 10));
+        btnEditar.addActionListener(this::btnEditarActionPerformed);
+        jPanel10.add(btnEditar);
 
         jPanel5.setMaximumSize(new java.awt.Dimension(4, 32));
         jPanel5.setMinimumSize(new java.awt.Dimension(4, 32));
@@ -685,15 +693,15 @@ public class Clientes extends javax.swing.JFrame {
 
         jPanel10.add(jPanel5);
 
-        jButton5.setBackground(new java.awt.Color(231, 228, 227));
-        jButton5.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(89, 79, 76));
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/SmIcon_Eliminar.png"))); // NOI18N
-        jButton5.setText("Eliminar");
-        jButton5.setBorderPainted(false);
-        jButton5.setMargin(new java.awt.Insets(6, 8, 6, 10));
-        jButton5.addActionListener(this::jButton5ActionPerformed);
-        jPanel10.add(jButton5);
+        btnEliminar.setBackground(new java.awt.Color(231, 228, 227));
+        btnEliminar.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        btnEliminar.setForeground(new java.awt.Color(89, 79, 76));
+        btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/SmIcon_Eliminar.png"))); // NOI18N
+        btnEliminar.setText("Eliminar");
+        btnEliminar.setBorderPainted(false);
+        btnEliminar.setMargin(new java.awt.Insets(6, 8, 6, 10));
+        btnEliminar.addActionListener(this::btnEliminarActionPerformed);
+        jPanel10.add(btnEliminar);
 
         TableFooter.add(jPanel10);
 
@@ -812,9 +820,37 @@ public class Clientes extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+        int fila = TablaClientes.getSelectedRow();
+
+        // 1. Validar si hay una fila seleccionada
+        if (fila == -1) {
+            JOptionPane.showMessageDialog(this, "Por favor seleccione un cliente de la tabla para eliminar.");
+            return;
+        }
+
+        // 2. Obtener el ID del cliente (columna 0) y su nombre (columna 1) para el mensaje
+        int idEliminar = Integer.parseInt(TablaClientes.getValueAt(fila, 0).toString());
+        String nombreCliente = TablaClientes.getValueAt(fila, 1).toString();
+
+        // 3. Confirmar la eliminación
+        int confirmacion = JOptionPane.showConfirmDialog(
+                this, 
+                "¿Está seguro de eliminar al cliente " + nombreCliente + "?", 
+                "Confirmar eliminación", 
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.WARNING_MESSAGE
+        );
+
+        // 4. Si el usuario confirma (presiona Sí)
+        if (confirmacion == JOptionPane.YES_OPTION) {
+            if (clientesDAO.eliminarCliente(idEliminar)) {
+                limpiarCampos();   // Restablece los formularios por si estaba cargado en edición
+                listarClientes();  // Vuelve a consultar la base de datos y refresca la tabla
+            }
+        }
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnVolverInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverInicioActionPerformed
         // TODO add your handling code here:
@@ -837,38 +873,98 @@ public class Clientes extends javax.swing.JFrame {
         SimpleDateFormat formato = new SimpleDateFormat("yyyy/MM/dd");
         String fechaFormateada = formato.format(fechaMov);
         */
-        
+        String nombre = jtfNombre.getText().trim();
+        String apellidoP = jtfApellidoP.getText().trim();
+        String apellidoM = jtfApellidoM.getText().trim();
+        String telefono = jtfTelefono.getText().trim();
+        String correo = jtfCorreo.getText().trim();
+        String direccion = jtfDireccion.getText().trim();
         java.util.Date fechaSeleccionada = jCalRegistro.getDate();
+
+        if (nombre.isEmpty() || apellidoP.isEmpty() || apellidoM.isEmpty() || 
+            telefono.isEmpty() || correo.isEmpty() || direccion.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor complete todos los campos obligatorios.");
+            return;
+        }
 
         if (fechaSeleccionada == null) {
             JOptionPane.showMessageDialog(this, "Por favor seleccione una fecha de registro.");
             return;
         }
 
-        java.sql.Date fechaSQL = new java.sql.Date(fechaSeleccionada.getTime());
+        java.sql.Date fecha = new java.sql.Date(fechaSeleccionada.getTime());
 
         ClientesPOJO cliente = new ClientesPOJO();
-        cliente.setNombre(jtfNombre.getText().trim());
-        cliente.setApellidoP(jtfApellidoP.getText().trim());
-        cliente.setApellidoM(jtfApellidoM.getText().trim());
-        cliente.setTelefono(jtfTelefono.getText().trim());
-        cliente.setCorreo(jtfCorreo.getText().trim());
-        cliente.setDireccion(jtfDireccion.getText().trim());
-        cliente.setFechaRegistro(fechaSQL);
+        cliente.setNombre(nombre);
+        cliente.setApellidoP(apellidoP);
+        cliente.setApellidoM(apellidoM);
+        cliente.setTelefono(telefono);
+        cliente.setCorreo(correo);
+        cliente.setDireccion(direccion);
+        cliente.setFechaRegistro(fecha);
 
         if (estado == 1) {
+            // Modo Crear
             if (clientesDAO.registrarCliente(cliente)) {
                 limpiarCampos();
                 listarClientes();
             }
         } else {
+            // Modo Editar (utiliza el id_actual que guardó btnEditar)
             cliente.setIdCliente(id_actual);
             if (clientesDAO.modificarCliente(cliente)) {
-                limpiarCampos();
+                JOptionPane.showMessageDialog(this, "Cliente actualizado correctamente.");
+                limpiarCampos(); // limpiarCampos() ya regresa estado a 1 e id_actual a -1
                 listarClientes();
             }
         }
     }//GEN-LAST:event_btnCrearRegistroActionPerformed
+
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        // TODO add your handling code here:
+        int fila = TablaClientes.getSelectedRow();
+    
+        // Si no ha seleccionado ninguna fila de la tabla, avisamos y salimos
+        if (fila == -1) {
+            JOptionPane.showMessageDialog(this, "Seleccione un cliente de la tabla para editar.");
+            return;
+        }
+
+        // 1. Guardamos el ID que está en la columna 0 de la fila seleccionada
+        id_actual = Integer.parseInt(TablaClientes.getValueAt(fila, 0).toString());
+
+        // 2. Cambiamos el modo a edición
+        estado = 2;
+        btnCrearRegistro.setText("Guardar cambios");
+
+        // 3. Pasamos los datos a las cajas de texto
+        jtfNombre.setText(TablaClientes.getValueAt(fila, 1).toString());
+        jtfApellidoP.setText(TablaClientes.getValueAt(fila, 2).toString());
+        jtfApellidoM.setText(TablaClientes.getValueAt(fila, 3).toString());
+        jtfTelefono.setText(TablaClientes.getValueAt(fila, 4).toString());
+        jtfCorreo.setText(TablaClientes.getValueAt(fila, 5).toString());
+        jtfDireccion.setText(TablaClientes.getValueAt(fila, 6).toString());
+
+        // 4. Cargamos la fecha en el JCalendar
+        Object valorFecha = TablaClientes.getValueAt(fila, 7);
+        if (valorFecha != null && !valorFecha.toString().trim().isEmpty()) {
+            try {
+                java.text.SimpleDateFormat formato = new java.text.SimpleDateFormat("yyyy-MM-dd");
+                java.util.Date fechaParseada = formato.parse(valorFecha.toString().trim());
+                jCalRegistro.setDate(fechaParseada);
+            } catch (java.text.ParseException e) {
+                System.err.println("Error al parsear la fecha: " + e.getMessage());
+                jCalRegistro.setDate(null);
+            }
+        } else {
+            jCalRegistro.setDate(null);
+        }
+    }//GEN-LAST:event_btnEditarActionPerformed
+
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        // TODO add your handling code here:
+        limpiarCampos();
+    }//GEN-LAST:event_btnLimpiarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -907,6 +1003,8 @@ public class Clientes extends javax.swing.JFrame {
     private javax.swing.JPanel TableFooter;
     private javax.swing.JLabel TitleModule;
     private javax.swing.JButton btnCrearRegistro;
+    private javax.swing.JButton btnEditar;
+    private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnSaberMas;
     private javax.swing.JButton btnSidebarCitas;
@@ -916,8 +1014,6 @@ public class Clientes extends javax.swing.JFrame {
     private javax.swing.JButton btnSidebarServicios;
     private javax.swing.JButton btnSoporte;
     private javax.swing.JButton btnVolverInicio;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private com.toedter.calendar.JCalendar jCalRegistro;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

@@ -1,9 +1,9 @@
 package POJO;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class MascotasPOJO {
-    int id_mascota;
+    int idMascota;
     String nombre;
     String especie;
     String raza;
@@ -11,13 +11,13 @@ public class MascotasPOJO {
     double peso;
     String color;
     Date fecha_nacimiento;
-    int id_cliente;
+    int idCliente;
 
     public MascotasPOJO() {
     }
 
-    public MascotasPOJO(int id_mascota, String nombre, String especie, String raza, String sexo, double peso, String color, Date fecha_nacimiento, int id_cliente) {
-        this.id_mascota = id_mascota;
+    public MascotasPOJO(int idMascota, String nombre, String especie, String raza, String sexo, double peso, String color, Date fecha_nacimiento, int idCliente) {
+        this.idMascota = idMascota;
         this.nombre = nombre;
         this.especie = especie;
         this.raza = raza;
@@ -25,15 +25,15 @@ public class MascotasPOJO {
         this.peso = peso;
         this.color = color;
         this.fecha_nacimiento = fecha_nacimiento;
-        this.id_cliente = id_cliente;
+        this.idCliente = idCliente;
     }
 
-    public int getId_mascota() {
-        return id_mascota;
+    public int getIdMascota() {
+        return idMascota;
     }
 
-    public void setId_mascota(int id_mascota) {
-        this.id_mascota = id_mascota;
+    public void setIdMascota(int idMascota) {
+        this.idMascota = idMascota;
     }
 
     public String getNombre() {
@@ -84,19 +84,19 @@ public class MascotasPOJO {
         this.color = color;
     }
 
-    public Date getFecha_nacimiento() {
+    public Date getFechaNacimiento() {
         return fecha_nacimiento;
     }
 
-    public void setFecha_nacimiento(Date fecha_nacimiento) {
+    public void setFechaNacimiento(Date fecha_nacimiento) {
         this.fecha_nacimiento = fecha_nacimiento;
     }
 
-    public int getId_cliente() {
-        return id_cliente;
+    public int getIdCliente() {
+        return idCliente;
     }
 
-    public void setId_cliente(int id_cliente) {
-        this.id_cliente = id_cliente;
+    public void setIdCliente(int idCliente) {
+        this.idCliente = idCliente;
     }
 }

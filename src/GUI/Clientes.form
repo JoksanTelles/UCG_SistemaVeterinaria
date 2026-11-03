@@ -1053,6 +1053,9 @@
                                       <Dimension value="[286, 40]"/>
                                     </Property>
                                   </Properties>
+                                  <Events>
+                                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLimpiarActionPerformed"/>
+                                  </Events>
                                 </Component>
                                 <Component class="javax.swing.JButton" name="btnCrearRegistro">
                                   <Properties>
@@ -1072,6 +1075,7 @@
                                     <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                       <Dimension value="[75000, 23]"/>
                                     </Property>
+                                    <Property name="opaque" type="boolean" value="true"/>
                                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                       <Dimension value="[286, 40]"/>
                                     </Property>
@@ -1141,20 +1145,67 @@
                                       <Properties>
                                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                                           <Table columnCount="8" rowCount="0">
-                                            <Column editable="true" title="Id" type="java.lang.Object"/>
-                                            <Column editable="true" title="Nombre" type="java.lang.Object"/>
-                                            <Column editable="true" title="Apellido P." type="java.lang.Object"/>
-                                            <Column editable="true" title="Apellido M." type="java.lang.Object"/>
-                                            <Column editable="true" title="Tel&#xe9;fono" type="java.lang.Object"/>
-                                            <Column editable="true" title="Correo" type="java.lang.Object"/>
-                                            <Column editable="true" title="Direcci&#xf3;n" type="java.lang.Object"/>
-                                            <Column editable="true" title="Registro" type="java.lang.Object"/>
+                                            <Column editable="false" title="Id" type="java.lang.Object"/>
+                                            <Column editable="false" title="Nombre" type="java.lang.Object"/>
+                                            <Column editable="false" title="Apellido P." type="java.lang.Object"/>
+                                            <Column editable="false" title="Apellido M." type="java.lang.Object"/>
+                                            <Column editable="false" title="Tel&#xe9;fono" type="java.lang.Object"/>
+                                            <Column editable="false" title="Correo" type="java.lang.Object"/>
+                                            <Column editable="false" title="Direcci&#xf3;n" type="java.lang.Object"/>
+                                            <Column editable="false" title="Registro" type="java.lang.Object"/>
                                           </Table>
+                                        </Property>
+                                        <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                                          <TableColumnModel selectionModel="0">
+                                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                              <Title/>
+                                              <Editor/>
+                                              <Renderer/>
+                                            </Column>
+                                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                              <Title/>
+                                              <Editor/>
+                                              <Renderer/>
+                                            </Column>
+                                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                              <Title/>
+                                              <Editor/>
+                                              <Renderer/>
+                                            </Column>
+                                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                              <Title/>
+                                              <Editor/>
+                                              <Renderer/>
+                                            </Column>
+                                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                              <Title/>
+                                              <Editor/>
+                                              <Renderer/>
+                                            </Column>
+                                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                              <Title/>
+                                              <Editor/>
+                                              <Renderer/>
+                                            </Column>
+                                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                              <Title/>
+                                              <Editor/>
+                                              <Renderer/>
+                                            </Column>
+                                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                              <Title/>
+                                              <Editor/>
+                                              <Renderer/>
+                                            </Column>
+                                          </TableColumnModel>
                                         </Property>
                                         <Property name="gridColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
                                         </Property>
                                         <Property name="opaque" type="boolean" value="false"/>
+                                        <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                                          <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
+                                        </Property>
                                       </Properties>
                                     </Component>
                                   </SubComponents>
@@ -1225,7 +1276,7 @@
                                             </DimensionLayout>
                                           </Layout>
                                         </Container>
-                                        <Component class="javax.swing.JButton" name="jButton4">
+                                        <Component class="javax.swing.JButton" name="btnEditar">
                                           <Properties>
                                             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                               <Color blue="e3" green="e4" red="e7" type="rgb"/>
@@ -1245,6 +1296,9 @@
                                               <Insets value="[6, 8, 6, 10]"/>
                                             </Property>
                                           </Properties>
+                                          <Events>
+                                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEditarActionPerformed"/>
+                                          </Events>
                                         </Component>
                                         <Container class="javax.swing.JPanel" name="jPanel5">
                                           <Properties>
@@ -1273,7 +1327,7 @@
                                             </DimensionLayout>
                                           </Layout>
                                         </Container>
-                                        <Component class="javax.swing.JButton" name="jButton5">
+                                        <Component class="javax.swing.JButton" name="btnEliminar">
                                           <Properties>
                                             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                               <Color blue="e3" green="e4" red="e7" type="rgb"/>
@@ -1294,7 +1348,7 @@
                                             </Property>
                                           </Properties>
                                           <Events>
-                                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton5ActionPerformed"/>
+                                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEliminarActionPerformed"/>
                                           </Events>
                                         </Component>
                                       </SubComponents>
