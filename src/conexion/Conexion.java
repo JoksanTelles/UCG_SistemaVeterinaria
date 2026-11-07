@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
 public class Conexion {
     Connection con;
     String URL = "jdbc:mysql://localhost:3306/veterinaria";
-    String USER = "root";
+    String USER = "joksan";
     String PASS = "1234";
     
     public Connection getConnection() {
