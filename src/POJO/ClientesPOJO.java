@@ -89,4 +89,9 @@ public class ClientesPOJO {
     public void setFechaRegistro(Date fechaRegistro) {
         this.fechaRegistro = fechaRegistro;
     }
+    
+    @Override
+    public String toString() {
+        return nombre + " " + apellidoP + " (" + idCliente + ")";
+    }
 }

@@ -25,9 +25,10 @@ public class MascotasDAO {
                         raza,
                         sexo,
                         peso,
-                        color,
-                        fecha_nacimiento
-                     ) VALUES (?,?,?,?,?,?,?)
+                        vacuna,
+                        edad,
+                        id_cliente
+                     ) VALUES (?,?,?,?,?,?,?,?)
                      """;
         try {
             con = cn.getConnection();
@@ -38,8 +39,8 @@ public class MascotasDAO {
             ps.setString(3, mascota.getRaza());
             ps.setString(4, mascota.getSexo());
             ps.setDouble(5, mascota.getPeso());
-            ps.setString(6, mascota.getColor());
-            ps.setDate(7, mascota.getFechaNacimiento());
+            ps.setString(6, mascota.getVacuna());
+            ps.setInt(7, mascota.getEdad());
             ps.setInt(8, mascota.getIdCliente());
             
             ps.execute();
@@ -76,8 +77,8 @@ public class MascotasDAO {
                 mascota.setRaza(rs.getString("raza"));
                 mascota.setSexo(rs.getString("sexo"));
                 mascota.setPeso(rs.getDouble("peso"));
-                mascota.setColor(rs.getString("color"));
-                mascota.setFechaNacimiento(rs.getDate("fecha_nacimiento"));
+                mascota.setVacuna(rs.getString("vacuna"));
+                mascota.setEdad(rs.getInt("edad"));
                 mascota.setIdCliente(rs.getInt("id_cliente"));
                 
                 listaMascotas.add(mascota);
@@ -93,7 +94,7 @@ public class MascotasDAO {
         String sql = """
                      UPDATE mascotas
                      SET nombre = ?, especie = ?, raza = ?, sexo = ?,
-                        peso = ?, color = ?, fecha_nacimiento = ?, id_cliente = ?
+                        peso = ?, vacuna = ?, edad = ?, id_cliente = ?
                      WHERE id_mascota = ?
                      """;
         try {
@@ -105,8 +106,8 @@ public class MascotasDAO {
             ps.setString(3, mascota.getRaza());
             ps.setString(4, mascota.getSexo());
             ps.setDouble(5, mascota.getPeso());
-            ps.setString(6, mascota.getColor());
-            ps.setDate(7, mascota.getFechaNacimiento());
+            ps.setString(6, mascota.getVacuna());
+            ps.setInt(7, mascota.getEdad());
             ps.setInt(8, mascota.getIdCliente());
             ps.setInt(9, mascota.getIdMascota());
             

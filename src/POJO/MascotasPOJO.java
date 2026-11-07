@@ -1,7 +1,5 @@
 package POJO;
 
-import java.sql.Date;
-
 public class MascotasPOJO {
     int idMascota;
     String nombre;
@@ -9,22 +7,22 @@ public class MascotasPOJO {
     String raza;
     String sexo;
     double peso;
-    String color;
-    Date fecha_nacimiento;
+    String vacuna;
+    int edad;
     int idCliente;
 
     public MascotasPOJO() {
     }
 
-    public MascotasPOJO(int idMascota, String nombre, String especie, String raza, String sexo, double peso, String color, Date fecha_nacimiento, int idCliente) {
+    public MascotasPOJO(int idMascota, String nombre, String especie, String raza, String sexo, double peso, String vacuna, int edad, int idCliente) {
         this.idMascota = idMascota;
         this.nombre = nombre;
         this.especie = especie;
         this.raza = raza;
         this.sexo = sexo;
         this.peso = peso;
-        this.color = color;
-        this.fecha_nacimiento = fecha_nacimiento;
+        this.vacuna = vacuna;
+        this.edad = edad;
         this.idCliente = idCliente;
     }
 
@@ -76,20 +74,20 @@ public class MascotasPOJO {
         this.peso = peso;
     }
 
-    public String getColor() {
-        return color;
+    public String getVacuna() {
+        return vacuna;
     }
 
-    public void setColor(String color) {
-        this.color = color;
+    public void setVacuna(String vacuna) {
+        this.vacuna = vacuna;
     }
 
-    public Date getFechaNacimiento() {
-        return fecha_nacimiento;
+    public int getEdad() {
+        return edad;
     }
 
-    public void setFechaNacimiento(Date fecha_nacimiento) {
-        this.fecha_nacimiento = fecha_nacimiento;
+    public void setEdad(int edad) {
+        this.edad = edad;
     }
 
     public int getIdCliente() {
