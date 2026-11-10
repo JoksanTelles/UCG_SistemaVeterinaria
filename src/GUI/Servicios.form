@@ -132,6 +132,9 @@
                           <Image iconType="3" name="/img/SidebarIcon_CitasHover.png"/>
                         </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSidebarCitasActionPerformed"/>
+                      </Events>
                     </Component>
                     <Component class="javax.swing.JButton" name="btnSidebarClientes">
                       <Properties>
@@ -169,6 +172,9 @@
                           <Image iconType="3" name="/img/SidebarIcon_MascotasHover.png"/>
                         </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSidebarConsultasActionPerformed"/>
+                      </Events>
                     </Component>
                     <Component class="javax.swing.JButton" name="btnSidebarMascotas">
                       <Properties>
@@ -437,7 +443,7 @@
                                 <Component class="javax.swing.JLabel" name="IconModule">
                                   <Properties>
                                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                                      <Image iconType="3" name="/img/IconClientes.png"/>
+                                      <Image iconType="3" name="/img/IconServicios.png"/>
                                     </Property>
                                     <Property name="alignmentX" type="float" value="0.5"/>
                                   </Properties>

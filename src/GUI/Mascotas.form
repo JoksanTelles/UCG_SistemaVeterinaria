@@ -132,6 +132,9 @@
                           <Image iconType="3" name="/img/SidebarIcon_CitasHover.png"/>
                         </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSidebarCitasActionPerformed"/>
+                      </Events>
                     </Component>
                     <Component class="javax.swing.JButton" name="btnSidebarClientes">
                       <Properties>
@@ -153,7 +156,7 @@
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSidebarClientesActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JButton" name="btnSidebarMascotas">
+                    <Component class="javax.swing.JButton" name="btnSidebarConsultas">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/img/SidebarIcon_Mascotas.png"/>
@@ -169,8 +172,11 @@
                           <Image iconType="3" name="/img/SidebarIcon_MascotasHover.png"/>
                         </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSidebarConsultasActionPerformed"/>
+                      </Events>
                     </Component>
-                    <Component class="javax.swing.JButton" name="btnSidebarConsultas">
+                    <Component class="javax.swing.JButton" name="btnSidebarMascotas">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/img/SidebarIcon_Consultas.png"/>
@@ -325,7 +331,7 @@
                             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                               <Color blue="4c" green="4f" red="59" type="rgb"/>
                             </Property>
-                            <Property name="text" type="java.lang.String" value="/ Clientes"/>
+                            <Property name="text" type="java.lang.String" value="/ Macotas"/>
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                               <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
                                 <EmptyBorder bottom="0" left="4" right="0" top="0"/>

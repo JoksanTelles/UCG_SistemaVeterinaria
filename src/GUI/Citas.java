@@ -253,7 +253,7 @@ public class Citas extends javax.swing.JFrame {
         jPanel3.add(btnVolverInicio);
 
         jLabel1.setForeground(new java.awt.Color(89, 79, 76));
-        jLabel1.setText("/ Consultas");
+        jLabel1.setText("/ Citas");
         jLabel1.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 4, 0, 0));
         jPanel3.add(jLabel1);
 

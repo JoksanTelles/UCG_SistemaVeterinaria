@@ -157,6 +157,7 @@ public class Servicios extends javax.swing.JFrame {
         btnSidebarCitas.setFocusPainted(false);
         btnSidebarCitas.setMargin(new java.awt.Insets(18, 18, 18, 18));
         btnSidebarCitas.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/SidebarIcon_CitasHover.png"))); // NOI18N
+        btnSidebarCitas.addActionListener(this::btnSidebarCitasActionPerformed);
         jPanel2.add(btnSidebarCitas);
 
         btnSidebarClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/SidebarIcon_Clientes.png"))); // NOI18N
@@ -176,6 +177,7 @@ public class Servicios extends javax.swing.JFrame {
         btnSidebarConsultas.setFocusPainted(false);
         btnSidebarConsultas.setMargin(new java.awt.Insets(18, 18, 18, 18));
         btnSidebarConsultas.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/SidebarIcon_MascotasHover.png"))); // NOI18N
+        btnSidebarConsultas.addActionListener(this::btnSidebarConsultasActionPerformed);
         jPanel2.add(btnSidebarConsultas);
 
         btnSidebarMascotas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/SidebarIcon_Consultas.png"))); // NOI18N
@@ -281,7 +283,7 @@ public class Servicios extends javax.swing.JFrame {
         IconTitleModule.setOpaque(false);
         IconTitleModule.setLayout(new javax.swing.BoxLayout(IconTitleModule, javax.swing.BoxLayout.Y_AXIS));
 
-        IconModule.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/IconClientes.png"))); // NOI18N
+        IconModule.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/IconServicios.png"))); // NOI18N
         IconModule.setAlignmentX(0.5F);
         IconTitleModule.add(IconModule);
 
@@ -786,6 +788,20 @@ public class Servicios extends javax.swing.JFrame {
         Mascotas mascotas = new Mascotas();
         mascotas.setVisible(true);
     }//GEN-LAST:event_btnSidebarMascotasActionPerformed
+
+    private void btnSidebarCitasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSidebarCitasActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        Citas citas = new Citas();
+        citas.setVisible(true);
+    }//GEN-LAST:event_btnSidebarCitasActionPerformed
+
+    private void btnSidebarConsultasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSidebarConsultasActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        Consultas consultas = new Consultas();
+        consultas.setVisible(true);
+    }//GEN-LAST:event_btnSidebarConsultasActionPerformed
 
     /**
      * @param args the command line arguments

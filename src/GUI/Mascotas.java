@@ -148,8 +148,8 @@ public class Mascotas extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         btnSidebarCitas = new javax.swing.JButton();
         btnSidebarClientes = new javax.swing.JButton();
-        btnSidebarMascotas = new javax.swing.JButton();
         btnSidebarConsultas = new javax.swing.JButton();
+        btnSidebarMascotas = new javax.swing.JButton();
         btnSidebarServicios = new javax.swing.JButton();
         SpaceSidebar = new javax.swing.JLabel();
         Content = new javax.swing.JPanel();
@@ -254,6 +254,7 @@ public class Mascotas extends javax.swing.JFrame {
         btnSidebarCitas.setFocusPainted(false);
         btnSidebarCitas.setMargin(new java.awt.Insets(18, 18, 18, 18));
         btnSidebarCitas.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/SidebarIcon_CitasHover.png"))); // NOI18N
+        btnSidebarCitas.addActionListener(this::btnSidebarCitasActionPerformed);
         jPanel2.add(btnSidebarCitas);
 
         btnSidebarClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/SidebarIcon_Clientes.png"))); // NOI18N
@@ -266,23 +267,24 @@ public class Mascotas extends javax.swing.JFrame {
         btnSidebarClientes.addActionListener(this::btnSidebarClientesActionPerformed);
         jPanel2.add(btnSidebarClientes);
 
-        btnSidebarMascotas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/SidebarIcon_Mascotas.png"))); // NOI18N
-        btnSidebarMascotas.setAlignmentX(0.5F);
-        btnSidebarMascotas.setBorderPainted(false);
-        btnSidebarMascotas.setContentAreaFilled(false);
-        btnSidebarMascotas.setFocusPainted(false);
-        btnSidebarMascotas.setMargin(new java.awt.Insets(18, 18, 18, 18));
-        btnSidebarMascotas.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/SidebarIcon_MascotasHover.png"))); // NOI18N
-        jPanel2.add(btnSidebarMascotas);
-
-        btnSidebarConsultas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/SidebarIcon_Consultas.png"))); // NOI18N
+        btnSidebarConsultas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/SidebarIcon_Mascotas.png"))); // NOI18N
         btnSidebarConsultas.setAlignmentX(0.5F);
         btnSidebarConsultas.setBorderPainted(false);
         btnSidebarConsultas.setContentAreaFilled(false);
         btnSidebarConsultas.setFocusPainted(false);
         btnSidebarConsultas.setMargin(new java.awt.Insets(18, 18, 18, 18));
-        btnSidebarConsultas.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/SidebarIcon_ConsultasHover.png"))); // NOI18N
+        btnSidebarConsultas.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/SidebarIcon_MascotasHover.png"))); // NOI18N
+        btnSidebarConsultas.addActionListener(this::btnSidebarConsultasActionPerformed);
         jPanel2.add(btnSidebarConsultas);
+
+        btnSidebarMascotas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/SidebarIcon_Consultas.png"))); // NOI18N
+        btnSidebarMascotas.setAlignmentX(0.5F);
+        btnSidebarMascotas.setBorderPainted(false);
+        btnSidebarMascotas.setContentAreaFilled(false);
+        btnSidebarMascotas.setFocusPainted(false);
+        btnSidebarMascotas.setMargin(new java.awt.Insets(18, 18, 18, 18));
+        btnSidebarMascotas.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/SidebarIcon_ConsultasHover.png"))); // NOI18N
+        jPanel2.add(btnSidebarMascotas);
 
         btnSidebarServicios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/SidebarIcon_Servicios.png"))); // NOI18N
         btnSidebarServicios.setAlignmentX(0.5F);
@@ -335,7 +337,7 @@ public class Mascotas extends javax.swing.JFrame {
         jPanel3.add(btnVolverInicio);
 
         jLabel1.setForeground(new java.awt.Color(89, 79, 76));
-        jLabel1.setText("/ Clientes");
+        jLabel1.setText("/ Macotas");
         jLabel1.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 4, 0, 0));
         jPanel3.add(jLabel1);
 
@@ -1017,6 +1019,20 @@ public class Mascotas extends javax.swing.JFrame {
         Servicios servicios = new Servicios();
         servicios.setVisible(true);
     }//GEN-LAST:event_btnSidebarServiciosActionPerformed
+
+    private void btnSidebarCitasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSidebarCitasActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        Citas citas = new Citas();
+        citas.setVisible(true);
+    }//GEN-LAST:event_btnSidebarCitasActionPerformed
+
+    private void btnSidebarConsultasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSidebarConsultasActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        Consultas consultas = new Consultas ();
+        consultas.setVisible(true);
+    }//GEN-LAST:event_btnSidebarConsultasActionPerformed
 
     /**
      * @param args the command line arguments
