@@ -97,4 +97,9 @@ public class MascotasPOJO {
     public void setIdCliente(int idCliente) {
         this.idCliente = idCliente;
     }
+    
+    @Override
+    public String toString() {
+        return nombre;
+    }
 }

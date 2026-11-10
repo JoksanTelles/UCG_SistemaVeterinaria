@@ -1,7 +1,10 @@
 package GUI;
 
 import DAO.CitasDAO;
+import DAO.MascotasDAO;
+import DAO.ServiciosDAO;
 import POJO.CitasPOJO;
+import POJO.MascotasPOJO;
 import POJO.ServiciosPOJO;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -16,8 +19,10 @@ public class Citas extends javax.swing.JFrame {
     
     public Citas() {
         initComponents();
-        
+        this.setLocationRelativeTo(this);
         listarCitas();
+        cargarMascotasComboBox();
+        cargarServiciosComboBox();
     }
     
     public void listarCitas() {
@@ -52,6 +57,28 @@ public class Citas extends javax.swing.JFrame {
         
         id_actual = -1;
         estado = 1;
+    }
+    
+    public void cargarMascotasComboBox() {
+        MascotasDAO mascotaDAO = new MascotasDAO();
+        List<MascotasPOJO> listaMascotas = mascotaDAO.listarMascotas();
+        cbMascota.removeAllItems();
+
+        for (MascotasPOJO mascota : listaMascotas) {
+            cbMascota.addItem(mascota); // Se llena directamente con el POJO gracias al toString()
+        }
+        cbMascota.setSelectedIndex(-1);
+    }
+    
+    public void cargarServiciosComboBox() {
+        ServiciosDAO servicioDAO = new ServiciosDAO();
+        List<ServiciosPOJO> listaServicios = servicioDAO.listarServicios();
+        cbServicio.removeAllItems();
+
+        for (ServiciosPOJO servicio : listaServicios) {
+            cbServicio.addItem(servicio); // Se llena directamente con el POJO gracias al toString()
+        }
+        cbServicio.setSelectedIndex(-1);
     }
 
     /**
@@ -539,11 +566,11 @@ public class Citas extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Id", "Síntomas", "Diagnóstico", "Tratamiento", "Observaciones", "Registro"
+                "Id", "Fecha", "Hora", "Mascota", "Servicio", "Motivo"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, true, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -554,6 +581,9 @@ public class Citas extends javax.swing.JFrame {
         TablaConsultas.setOpaque(false);
         TablaConsultas.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(TablaConsultas);
+        if (TablaConsultas.getColumnModel().getColumnCount() > 0) {
+            TablaConsultas.getColumnModel().getColumn(0).setPreferredWidth(12);
+        }
 
         TableContainerPadding.add(jScrollPane1);
 
@@ -780,8 +810,6 @@ public class Citas extends javax.swing.JFrame {
         // TODO add your handling code here:
         java.util.Date fechaSeleccionada = jDateChooser.getDate();
         String hora = jtfHora.getText().trim();
-        int mascota = Integer.parseInt(cbMascota.getSelectedItem().toString());
-        int servicio = Integer.parseInt(cbServicio.getSelectedItem().toString());
         String motivo = jtaMotivo.getText().trim();
 
         if (hora.isEmpty() ||
@@ -794,28 +822,37 @@ public class Citas extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Por favor seleccione una fecha de registro.");
             return;
         }
+        
+        if (cbMascota.getSelectedItem() == null || cbServicio.getSelectedItem() == null) {
+            JOptionPane.showMessageDialog(this, "Por favor seleccione una mascota y un servicio.");
+            return;
+        }
+        
+        MascotasPOJO mascotaSeleccionada = (MascotasPOJO) cbMascota.getSelectedItem();
+        ServiciosPOJO servicioSeleccionado = (ServiciosPOJO) cbServicio.getSelectedItem();
+        
+        int mascotaId = mascotaSeleccionada.getIdMascota();
+        int servicioId = servicioSeleccionado.getIdServicio();
 
         java.sql.Date fecha = new java.sql.Date(fechaSeleccionada.getTime());
 
         CitasPOJO cita = new CitasPOJO();
         cita.setFecha(fecha);
         cita.setHora(hora);
-        cita.setIdMascota(mascota);
-        cita.setIdServicio(servicio);
+        cita.setIdMascota(mascotaId);
+        cita.setIdServicio(servicioId);
         cita.setMotivo(motivo);
 
         if (estado == 1) {
-            // Modo Crear
             if (citasDAO.registrarCita(cita)) {
                 limpiarCampos();
                 listarCitas();
             }
         } else {
-            // Modo Editar (utiliza el id_actual que guardó btnEditar)
             cita.setIdCita(id_actual);
             if (citasDAO.modificarCita(cita)) {
                 JOptionPane.showMessageDialog(this, "Consulta actualizada correctamente.");
-                limpiarCampos(); // limpiarCampos() ya regresa estado a 1 e id_actual a -1
+                limpiarCampos();
                 listarCitas();
             }
         }
@@ -825,27 +862,17 @@ public class Citas extends javax.swing.JFrame {
         // TODO add your handling code here:
         int fila = TablaConsultas.getSelectedRow();
 
-        // Si no ha seleccionado ninguna fila de la tabla, avisamos y salimos
         if (fila == -1) {
-            JOptionPane.showMessageDialog(this, "Seleccione una consulta de la tabla para editar.");
+            JOptionPane.showMessageDialog(this, "Seleccione una cita de la tabla para editar.");
             return;
         }
 
-        // 1. Guardamos el ID que está en la columna 0 de la fila seleccionada
         id_actual = Integer.parseInt(TablaConsultas.getValueAt(fila, 0).toString());
 
-        // 2. Cambiamos el modo a edición
         estado = 2;
         btnCrearRegistro.setText("Guardar cambios");
 
-        // 3. Pasamos los datos a las cajas de texto
-        jtfHora.setText(TablaConsultas.getValueAt(fila, 1).toString());
-        cbMascota.setSelectedIndex(Integer.parseInt(TablaConsultas.getValueAt(fila, 2).toString()));
-        cbServicio.setSelectedIndex(Integer.parseInt(TablaConsultas.getValueAt(fila, 3).toString()));
-        jtaMotivo.setText(TablaConsultas.getValueAt(fila, 2).toString());
-
-        // 4. Cargamos la fecha en el JCalendar
-        Object valorFecha = TablaConsultas.getValueAt(fila, 4);
+        Object valorFecha = TablaConsultas.getValueAt(fila, 1);
         if (valorFecha != null && !valorFecha.toString().trim().isEmpty()) {
             try {
                 java.text.SimpleDateFormat formato = new java.text.SimpleDateFormat("yyyy-MM-dd");
@@ -858,6 +885,28 @@ public class Citas extends javax.swing.JFrame {
         } else {
             jDateChooser.setDate(null);
         }
+
+        jtfHora.setText(TablaConsultas.getValueAt(fila, 2).toString());
+
+        int idMascotaTabla = Integer.parseInt(TablaConsultas.getValueAt(fila, 3).toString());
+        for (int i = 0; i < cbMascota.getItemCount(); i++) {
+            MascotasPOJO m = cbMascota.getItemAt(i);
+            if (m.getIdMascota() == idMascotaTabla) {
+                cbMascota.setSelectedIndex(i);
+                break;
+            }
+        }
+
+        int idServicioTabla = Integer.parseInt(TablaConsultas.getValueAt(fila, 4).toString());
+        for (int i = 0; i < cbServicio.getItemCount(); i++) {
+            ServiciosPOJO s = cbServicio.getItemAt(i);
+            if (s.getIdServicio() == idServicioTabla) {
+                cbServicio.setSelectedIndex(i);
+                break;
+            }
+        }
+
+        jtaMotivo.setText(TablaConsultas.getValueAt(fila, 5).toString());
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
@@ -946,7 +995,7 @@ public class Citas extends javax.swing.JFrame {
     private javax.swing.JButton btnSidebarServicios;
     private javax.swing.JButton btnSoporte;
     private javax.swing.JButton btnVolverInicio;
-    private javax.swing.JComboBox<CitasPOJO> cbMascota;
+    private javax.swing.JComboBox<MascotasPOJO> cbMascota;
     private javax.swing.JComboBox<ServiciosPOJO> cbServicio;
     private com.toedter.calendar.JDateChooser jDateChooser;
     private javax.swing.JLabel jLabel1;

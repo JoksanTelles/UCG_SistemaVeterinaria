@@ -37,7 +37,7 @@ public class CitasDAO {
             ps.setInt(5, citas.getIdServicio());
             
             ps.execute();
-            JOptionPane.showMessageDialog(null, "Registro de citas exitoso.");
+            JOptionPane.showMessageDialog(null, "Registro de cita exitoso.");
             
             return true;
         } catch (SQLException e) {
@@ -64,7 +64,7 @@ public class CitasDAO {
             while (rs.next()) {
                 CitasPOJO citas = new CitasPOJO();
                 
-                citas.setIdCita(rs.getInt("id_citas"));
+                citas.setIdCita(rs.getInt("id_cita"));
                 citas.setFecha(rs.getDate("fecha"));
                 citas.setHora(rs.getString("hora"));
                 citas.setMotivo(rs.getString("motivo"));
@@ -85,7 +85,7 @@ public class CitasDAO {
                      UPDATE citas
                      SET fecha = ?, hora = ?, motivo = ?,
                         id_mascota = ?, id_servicio = ?
-                     WHERE id_citas = ?
+                     WHERE id_cita = ?
                      """;
         try {
             con = cn.getConnection();
@@ -114,7 +114,7 @@ public class CitasDAO {
     }
     
     public boolean eliminarCita(int id) {
-        String sql = "DELETE FROM citas WHERE id_citas = ?";
+        String sql = "DELETE FROM citas WHERE id_cita = ?";
         
         try {
             con = cn.getConnection();
