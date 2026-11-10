@@ -76,6 +76,7 @@ public class Inicio extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(1080, 640));
 
         MainContent.setBackground(new java.awt.Color(251, 250, 249));
+        MainContent.setAlignmentX(0.5F);
         MainContent.setLayout(new javax.swing.BoxLayout(MainContent, javax.swing.BoxLayout.Y_AXIS));
 
         Header.setBorder(javax.swing.BorderFactory.createEmptyBorder(64, 0, 0, 0));
@@ -168,6 +169,7 @@ public class Inicio extends javax.swing.JFrame {
         BtnVerCitas.setMaximumSize(new java.awt.Dimension(75000, 36));
         BtnVerCitas.setMinimumSize(new java.awt.Dimension(75, 36));
         BtnVerCitas.setPreferredSize(new java.awt.Dimension(75, 36));
+        BtnVerCitas.addActionListener(this::BtnVerCitasActionPerformed);
         CardBorder.add(BtnVerCitas);
 
         CardCitas.add(CardBorder);
@@ -349,6 +351,7 @@ public class Inicio extends javax.swing.JFrame {
         BtnVerConsultas.setMaximumSize(new java.awt.Dimension(75000, 36));
         BtnVerConsultas.setMinimumSize(new java.awt.Dimension(75, 36));
         BtnVerConsultas.setPreferredSize(new java.awt.Dimension(75, 36));
+        BtnVerConsultas.addActionListener(this::BtnVerConsultasActionPerformed);
         CardBorder4.add(BtnVerConsultas);
 
         CardConsultas.add(CardBorder4);
@@ -407,6 +410,7 @@ public class Inicio extends javax.swing.JFrame {
         BtnVerServicios.setMaximumSize(new java.awt.Dimension(75000, 36));
         BtnVerServicios.setMinimumSize(new java.awt.Dimension(75, 36));
         BtnVerServicios.setPreferredSize(new java.awt.Dimension(75, 36));
+        BtnVerServicios.addActionListener(this::BtnVerServiciosActionPerformed);
         CardBorder6.add(BtnVerServicios);
 
         CardServicios.add(CardBorder6);
@@ -502,6 +506,27 @@ public class Inicio extends javax.swing.JFrame {
         Mascotas mascotas = new Mascotas();
         mascotas.setVisible(true);
     }//GEN-LAST:event_BtnVerMascotasActionPerformed
+
+    private void BtnVerCitasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnVerCitasActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        Citas citas = new Citas();
+        citas.setVisible(true);
+    }//GEN-LAST:event_BtnVerCitasActionPerformed
+
+    private void BtnVerConsultasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnVerConsultasActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        Consultas consultas = new Consultas();
+        consultas.setVisible(true);
+    }//GEN-LAST:event_BtnVerConsultasActionPerformed
+
+    private void BtnVerServiciosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnVerServiciosActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        Servicios servicios = new Servicios();
+        servicios.setVisible(true);
+    }//GEN-LAST:event_BtnVerServiciosActionPerformed
 
     /**
      * @param args the command line arguments

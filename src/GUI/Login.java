@@ -7,10 +7,9 @@ public class Login extends javax.swing.JFrame {
     String email = "joksan@mail.com";
     String pass = "1234";
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Login.class.getName());
-
     public Login() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -22,67 +21,246 @@ public class Login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        MainContent = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
+        Header = new javax.swing.JPanel();
+        SpaceTopCardContainer2 = new javax.swing.JPanel();
+        Logo = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        HeaderDescription = new javax.swing.JLabel();
+        SpaceTopCardContainer1 = new javax.swing.JPanel();
+        CardContainerLayout = new javax.swing.JPanel();
+        SpaceTopCardContainer = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
         jtfEmail = new javax.swing.JTextField();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
         jtfPass = new javax.swing.JPasswordField();
         btnIniciarSesion = new javax.swing.JButton();
+        SpaceBottomCardContainer = new javax.swing.JPanel();
+        Footer = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        FooterLinks = new javax.swing.JPanel();
+        btnSaberMas = new javax.swing.JButton();
+        btnSoporte = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1142, 656));
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        MainContent.setBackground(new java.awt.Color(251, 250, 249));
+        MainContent.setMinimumSize(new java.awt.Dimension(1142, 638));
+        MainContent.setPreferredSize(new java.awt.Dimension(1142, 638));
+        MainContent.setLayout(new javax.swing.BoxLayout(MainContent, javax.swing.BoxLayout.Y_AXIS));
+
+        jPanel1.setOpaque(false);
+        jPanel1.setLayout(new java.awt.GridLayout());
+
+        Header.setBackground(new java.awt.Color(237, 142, 54));
+        Header.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        Header.setLayout(new javax.swing.BoxLayout(Header, javax.swing.BoxLayout.Y_AXIS));
+
+        SpaceTopCardContainer2.setOpaque(false);
+
+        javax.swing.GroupLayout SpaceTopCardContainer2Layout = new javax.swing.GroupLayout(SpaceTopCardContainer2);
+        SpaceTopCardContainer2.setLayout(SpaceTopCardContainer2Layout);
+        SpaceTopCardContainer2Layout.setHorizontalGroup(
+            SpaceTopCardContainer2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 571, Short.MAX_VALUE)
+        );
+        SpaceTopCardContainer2Layout.setVerticalGroup(
+            SpaceTopCardContainer2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        Header.add(SpaceTopCardContainer2);
+
+        Logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/LogoVerticalOnDark.png"))); // NOI18N
+        Logo.setAlignmentX(0.5F);
+        Header.add(Logo);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Light", 0, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 255));
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Login");
+        jLabel1.setText("Inicio de Sesión");
+        jLabel1.setAlignmentX(0.5F);
+        jLabel1.setBorder(javax.swing.BorderFactory.createEmptyBorder(24, 0, 0, 0));
+        jLabel1.setMaximumSize(new java.awt.Dimension(95000, 80));
+        Header.add(jLabel1);
+
+        HeaderDescription.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        HeaderDescription.setForeground(new java.awt.Color(255, 255, 204));
+        HeaderDescription.setText("Ingresa tus datos para iniciar sesión.");
+        HeaderDescription.setAlignmentX(0.5F);
+        HeaderDescription.setBorder(javax.swing.BorderFactory.createEmptyBorder(24, 0, 0, 0));
+        Header.add(HeaderDescription);
+
+        SpaceTopCardContainer1.setOpaque(false);
+
+        javax.swing.GroupLayout SpaceTopCardContainer1Layout = new javax.swing.GroupLayout(SpaceTopCardContainer1);
+        SpaceTopCardContainer1.setLayout(SpaceTopCardContainer1Layout);
+        SpaceTopCardContainer1Layout.setHorizontalGroup(
+            SpaceTopCardContainer1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 571, Short.MAX_VALUE)
+        );
+        SpaceTopCardContainer1Layout.setVerticalGroup(
+            SpaceTopCardContainer1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        Header.add(SpaceTopCardContainer1);
+
+        jPanel1.add(Header);
+
+        CardContainerLayout.setBorder(javax.swing.BorderFactory.createEmptyBorder(40, 40, 40, 40));
+        CardContainerLayout.setOpaque(false);
+        CardContainerLayout.setLayout(new javax.swing.BoxLayout(CardContainerLayout, javax.swing.BoxLayout.Y_AXIS));
+
+        SpaceTopCardContainer.setOpaque(false);
+
+        javax.swing.GroupLayout SpaceTopCardContainerLayout = new javax.swing.GroupLayout(SpaceTopCardContainer);
+        SpaceTopCardContainer.setLayout(SpaceTopCardContainerLayout);
+        SpaceTopCardContainerLayout.setHorizontalGroup(
+            SpaceTopCardContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 491, Short.MAX_VALUE)
+        );
+        SpaceTopCardContainerLayout.setVerticalGroup(
+            SpaceTopCardContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        CardContainerLayout.add(SpaceTopCardContainer);
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 12, 0));
+        jPanel2.setMaximumSize(new java.awt.Dimension(2147483647, 88));
+        jPanel2.setMinimumSize(new java.awt.Dimension(42, 88));
+        jPanel2.setOpaque(false);
+        jPanel2.setPreferredSize(new java.awt.Dimension(571, 88));
+        jPanel2.setLayout(new javax.swing.BoxLayout(jPanel2, javax.swing.BoxLayout.Y_AXIS));
+
+        jLabel3.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        jLabel3.setText("Correo electrónico");
+        jLabel3.setAlignmentX(0.5F);
+        jLabel3.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 16, 0));
+        jLabel3.setMaximumSize(new java.awt.Dimension(42000, 32));
+        jLabel3.setMinimumSize(new java.awt.Dimension(42, 32));
+        jLabel3.setPreferredSize(new java.awt.Dimension(42, 32));
+        jPanel2.add(jLabel3);
 
         jtfEmail.setMargin(new java.awt.Insets(2, 8, 2, 8));
+        jtfEmail.setMaximumSize(new java.awt.Dimension(2147483647, 32));
+        jPanel2.add(jtfEmail);
+
+        CardContainerLayout.add(jPanel2);
+
+        jPanel3.setMaximumSize(new java.awt.Dimension(2147483647, 88));
+        jPanel3.setOpaque(false);
+        jPanel3.setPreferredSize(new java.awt.Dimension(42, 88));
+        jPanel3.setLayout(new javax.swing.BoxLayout(jPanel3, javax.swing.BoxLayout.Y_AXIS));
+
+        jLabel4.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        jLabel4.setText("Contraseña");
+        jLabel4.setAlignmentX(0.5F);
+        jLabel4.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 16, 0));
+        jLabel4.setMaximumSize(new java.awt.Dimension(42000, 32));
+        jLabel4.setMinimumSize(new java.awt.Dimension(42, 32));
+        jLabel4.setPreferredSize(new java.awt.Dimension(42, 32));
+        jPanel3.add(jLabel4);
 
         jtfPass.setMargin(new java.awt.Insets(2, 8, 2, 8));
+        jtfPass.setMaximumSize(new java.awt.Dimension(2147483647, 32));
+        jPanel3.add(jtfPass);
 
-        btnIniciarSesion.setBackground(new java.awt.Color(0, 0, 255));
+        CardContainerLayout.add(jPanel3);
+
+        btnIniciarSesion.setBackground(new java.awt.Color(237, 142, 54));
         btnIniciarSesion.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnIniciarSesion.setForeground(new java.awt.Color(255, 255, 255));
         btnIniciarSesion.setText("Entrar");
+        btnIniciarSesion.setAlignmentX(0.5F);
+        btnIniciarSesion.setBorderPainted(false);
+        btnIniciarSesion.setDefaultCapable(false);
+        btnIniciarSesion.setFocusPainted(false);
+        btnIniciarSesion.setFocusTraversalKeysEnabled(false);
+        btnIniciarSesion.setFocusable(false);
+        btnIniciarSesion.setMargin(new java.awt.Insets(8, 16, 8, 16));
+        btnIniciarSesion.setMaximumSize(new java.awt.Dimension(77000, 35));
+        btnIniciarSesion.setOpaque(true);
+        btnIniciarSesion.setRequestFocusEnabled(false);
         btnIniciarSesion.addActionListener(this::btnIniciarSesionActionPerformed);
+        CardContainerLayout.add(btnIniciarSesion);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(71, 71, 71)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 434, Short.MAX_VALUE)
-                    .addComponent(jtfEmail)
-                    .addComponent(btnIniciarSesion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jtfPass))
-                .addContainerGap(78, Short.MAX_VALUE))
+        SpaceBottomCardContainer.setOpaque(false);
+
+        javax.swing.GroupLayout SpaceBottomCardContainerLayout = new javax.swing.GroupLayout(SpaceBottomCardContainer);
+        SpaceBottomCardContainer.setLayout(SpaceBottomCardContainerLayout);
+        SpaceBottomCardContainerLayout.setHorizontalGroup(
+            SpaceBottomCardContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 491, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(75, 75, 75)
-                .addComponent(jLabel1)
-                .addGap(30, 30, 30)
-                .addComponent(jtfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jtfPass, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
-                .addComponent(btnIniciarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(115, Short.MAX_VALUE))
+        SpaceBottomCardContainerLayout.setVerticalGroup(
+            SpaceBottomCardContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
+
+        CardContainerLayout.add(SpaceBottomCardContainer);
+
+        jPanel1.add(CardContainerLayout);
+
+        MainContent.add(jPanel1);
+
+        Footer.setBackground(new java.awt.Color(247, 215, 173));
+        Footer.setBorder(javax.swing.BorderFactory.createEmptyBorder(16, 40, 24, 40));
+        Footer.setLayout(new javax.swing.BoxLayout(Footer, javax.swing.BoxLayout.LINE_AXIS));
+
+        jLabel2.setForeground(new java.awt.Color(69, 60, 57));
+        jLabel2.setText("Sistema Veterinario v1.0");
+        jLabel2.setMaximumSize(new java.awt.Dimension(56500, 16));
+        Footer.add(jLabel2);
+
+        FooterLinks.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        FooterLinks.setMaximumSize(new java.awt.Dimension(109, 39));
+        FooterLinks.setMinimumSize(new java.awt.Dimension(164, 28));
+        FooterLinks.setOpaque(false);
+        FooterLinks.setPreferredSize(new java.awt.Dimension(117, 20));
+        java.awt.FlowLayout flowLayout1 = new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 8, 0);
+        flowLayout1.setAlignOnBaseline(true);
+        FooterLinks.setLayout(flowLayout1);
+
+        btnSaberMas.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        btnSaberMas.setForeground(new java.awt.Color(69, 60, 57));
+        btnSaberMas.setText("Saber más");
+        btnSaberMas.setAlignmentX(0.5F);
+        btnSaberMas.setBorderPainted(false);
+        btnSaberMas.setContentAreaFilled(false);
+        btnSaberMas.setFocusPainted(false);
+        btnSaberMas.setFocusable(false);
+        btnSaberMas.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        FooterLinks.add(btnSaberMas);
+
+        btnSoporte.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        btnSoporte.setForeground(new java.awt.Color(69, 60, 57));
+        btnSoporte.setText("Soporte");
+        btnSoporte.setAlignmentX(0.5F);
+        btnSoporte.setBorderPainted(false);
+        btnSoporte.setContentAreaFilled(false);
+        btnSoporte.setFocusPainted(false);
+        btnSoporte.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        FooterLinks.add(btnSoporte);
+
+        Footer.add(FooterLinks);
+
+        MainContent.add(Footer);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(MainContent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(MainContent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -93,10 +271,19 @@ public class Login extends javax.swing.JFrame {
         String emailSelected = jtfEmail.getText();
         String passSelected = jtfPass.getText();
         
+        if (emailSelected.isEmpty() || passSelected.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor ingresa tu correo y contraseña.", "Campos vacíos", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
         if (email.equals(emailSelected) && pass.equals(passSelected)) {
-            JOptionPane.showMessageDialog(null, "Correo y contraseña correctos.");
+            this.setVisible(false);
+            Inicio inicio = new Inicio();
+            inicio.setVisible(true);
         } else {
-            JOptionPane.showMessageDialog(null, "Error");
+            JOptionPane.showMessageDialog(this, "Credenciales incorrectas. Verifica tu correo o contraseña.", "Error de acceso", JOptionPane.ERROR_MESSAGE);
+            jtfPass.setText("");
+            jtfPass.requestFocus();
         }
     }//GEN-LAST:event_btnIniciarSesionActionPerformed
 
@@ -109,16 +296,6 @@ public class Login extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
-        }
         //</editor-fold>
 
         /* Create and display the form */
@@ -126,9 +303,27 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel CardContainerLayout;
+    private javax.swing.JPanel Footer;
+    private javax.swing.JPanel FooterLinks;
+    private javax.swing.JPanel Header;
+    private javax.swing.JLabel HeaderDescription;
+    private javax.swing.JLabel Logo;
+    private javax.swing.JPanel MainContent;
+    private javax.swing.JPanel SpaceBottomCardContainer;
+    private javax.swing.JPanel SpaceTopCardContainer;
+    private javax.swing.JPanel SpaceTopCardContainer1;
+    private javax.swing.JPanel SpaceTopCardContainer2;
     private javax.swing.JButton btnIniciarSesion;
+    private javax.swing.JButton btnSaberMas;
+    private javax.swing.JButton btnSoporte;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JTextField jtfEmail;
     private javax.swing.JPasswordField jtfPass;
     // End of variables declaration//GEN-END:variables

@@ -41,6 +41,7 @@
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="f9" green="fa" red="fb" type="rgb"/>
         </Property>
+        <Property name="alignmentX" type="float" value="0.5"/>
       </Properties>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBoxLayout">
@@ -270,6 +271,9 @@
                               <Dimension value="[75, 36]"/>
                             </Property>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnVerCitasActionPerformed"/>
+                          </Events>
                         </Component>
                       </SubComponents>
                     </Container>
@@ -738,6 +742,9 @@
                               <Dimension value="[75, 36]"/>
                             </Property>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnVerConsultasActionPerformed"/>
+                          </Events>
                         </Component>
                       </SubComponents>
                     </Container>
@@ -888,6 +895,9 @@
                               <Dimension value="[75, 36]"/>
                             </Property>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnVerServiciosActionPerformed"/>
+                          </Events>
                         </Component>
                       </SubComponents>
                     </Container>

@@ -6,11 +6,13 @@ import GUI.Login;
 public class BarraDeCarga extends javax.swing.JFrame {
     
     public BarraDeCarga() {
+        this.setUndecorated(true);
         initComponents();
-        
         this.setLocationRelativeTo(this);
         this.setResizable(false);
         this.setBackground(new Color(0,0,0,0));
+        BarraCarga.setUI(new javax.swing.plaf.basic.BasicProgressBarUI());
+        BarraCarga.setForeground(new Color(237, 142, 54));
     }
 
     /**
@@ -23,47 +25,77 @@ public class BarraDeCarga extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        jPanel5 = new javax.swing.JPanel();
+        imagen = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
         BarraCarga = new javax.swing.JProgressBar();
         TextoBarra = new javax.swing.JLabel();
-        imagen = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
 
+        jPanel1.setBackground(new java.awt.Color(253, 247, 238));
+        jPanel1.setBorder(javax.swing.BorderFactory.createEmptyBorder(40, 40, 40, 40));
+        jPanel1.setLayout(new javax.swing.BoxLayout(jPanel1, javax.swing.BoxLayout.Y_AXIS));
+
+        jPanel3.setOpaque(false);
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 957, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 64, Short.MAX_VALUE)
+        );
+
+        jPanel1.add(jPanel3);
+
+        jPanel5.setOpaque(false);
+        jPanel5.setLayout(new javax.swing.BoxLayout(jPanel5, javax.swing.BoxLayout.Y_AXIS));
+
+        imagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/LogoVertical.png"))); // NOI18N
+        imagen.setAlignmentX(0.5F);
+        imagen.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 40, 0));
+        jPanel5.add(imagen);
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createEmptyBorder(24, 0, 0, 0));
+        jPanel2.setOpaque(false);
+        jPanel2.setLayout(new javax.swing.BoxLayout(jPanel2, javax.swing.BoxLayout.Y_AXIS));
+
+        BarraCarga.setBackground(new java.awt.Color(215, 210, 208));
+        jPanel2.add(BarraCarga);
+
+        TextoBarra.setForeground(new java.awt.Color(69, 60, 57));
         TextoBarra.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        TextoBarra.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        TextoBarra.setText("Cargando sistema... Espere por favor");
+        TextoBarra.setAlignmentX(0.5F);
+        TextoBarra.setBorder(javax.swing.BorderFactory.createEmptyBorder(12, 0, 0, 0));
+        jPanel2.add(TextoBarra);
 
-        imagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logoVeterinaria.jpg"))); // NOI18N
+        jPanel5.add(jPanel2);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(246, 246, 246)
-                        .addComponent(BarraCarga, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(103, 103, 103)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(TextoBarra, javax.swing.GroupLayout.PREFERRED_SIZE, 570, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(imagen, javax.swing.GroupLayout.PREFERRED_SIZE, 627, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(307, Short.MAX_VALUE))
+        jPanel1.add(jPanel5);
+
+        jPanel4.setOpaque(false);
+        jPanel4.setPreferredSize(new java.awt.Dimension(957, 220));
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 957, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addComponent(imagen, javax.swing.GroupLayout.PREFERRED_SIZE, 421, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(TextoBarra, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(BarraCarga, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(25, Short.MAX_VALUE))
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 212, Short.MAX_VALUE)
         );
+
+        jPanel1.add(jPanel4);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -73,7 +105,7 @@ public class BarraDeCarga extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 544, Short.MAX_VALUE)
         );
 
         pack();
@@ -88,7 +120,7 @@ public class BarraDeCarga extends javax.swing.JFrame {
         
         try {
             for (int i = 0; i <= 100; i++) {
-                Thread.sleep(50);
+                Thread.sleep(20);
                 barra.BarraCarga.setValue(i);
                 barra.TextoBarra.setText(
                         "Cargando sistema... Espere por favor" + 
@@ -108,5 +140,9 @@ public class BarraDeCarga extends javax.swing.JFrame {
     private javax.swing.JLabel TextoBarra;
     private javax.swing.JLabel imagen;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     // End of variables declaration//GEN-END:variables
 }
