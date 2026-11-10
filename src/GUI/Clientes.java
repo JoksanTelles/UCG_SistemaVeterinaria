@@ -210,6 +210,7 @@ public class Clientes extends javax.swing.JFrame {
         btnSidebarConsultas.setFocusPainted(false);
         btnSidebarConsultas.setMargin(new java.awt.Insets(18, 18, 18, 18));
         btnSidebarConsultas.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/SidebarIcon_ConsultasHover.png"))); // NOI18N
+        btnSidebarConsultas.addActionListener(this::btnSidebarConsultasActionPerformed);
         jPanel2.add(btnSidebarConsultas);
 
         btnSidebarServicios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/SidebarIcon_Servicios.png"))); // NOI18N
@@ -219,6 +220,7 @@ public class Clientes extends javax.swing.JFrame {
         btnSidebarServicios.setFocusPainted(false);
         btnSidebarServicios.setMargin(new java.awt.Insets(18, 18, 18, 18));
         btnSidebarServicios.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/SidebarIcon_ServiciosHover.png"))); // NOI18N
+        btnSidebarServicios.addActionListener(this::btnSidebarServiciosActionPerformed);
         jPanel2.add(btnSidebarServicios);
 
         jPanel1.add(jPanel2, new java.awt.GridBagConstraints());
@@ -341,7 +343,6 @@ public class Clientes extends javax.swing.JFrame {
         jScrollPane2.setBorder(null);
         jScrollPane2.setForeground(new java.awt.Color(255, 255, 255));
         jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        jScrollPane2.setFocusTraversalKeysEnabled(false);
         jScrollPane2.setFocusable(false);
         jScrollPane2.setMinimumSize(new java.awt.Dimension(296, 16));
         jScrollPane2.setPreferredSize(new java.awt.Dimension(296, 426));
@@ -350,7 +351,6 @@ public class Clientes extends javax.swing.JFrame {
         jPanel23.setBackground(new java.awt.Color(255, 255, 255));
         jPanel23.setDoubleBuffered(false);
         jPanel23.setEnabled(false);
-        jPanel23.setFocusTraversalKeysEnabled(false);
         jPanel23.setFocusable(false);
         jPanel23.setMaximumSize(new java.awt.Dimension(280, 2147483647));
         jPanel23.setMinimumSize(new java.awt.Dimension(280, 456));
@@ -584,10 +584,12 @@ public class Clientes extends javax.swing.JFrame {
         btnCrearRegistro.setText("Crear registro");
         btnCrearRegistro.setAlignmentX(0.5F);
         btnCrearRegistro.setBorderPainted(false);
+        btnCrearRegistro.setFocusPainted(false);
         btnCrearRegistro.setFocusable(false);
         btnCrearRegistro.setMaximumSize(new java.awt.Dimension(75000, 23));
-        btnCrearRegistro.setOpaque(true);
         btnCrearRegistro.setPreferredSize(new java.awt.Dimension(286, 40));
+        btnCrearRegistro.setRequestFocusEnabled(false);
+        btnCrearRegistro.setVerifyInputWhenFocusTarget(false);
         btnCrearRegistro.addActionListener(this::btnCrearRegistroActionPerformed);
         jPanel9.add(btnCrearRegistro);
 
@@ -865,14 +867,6 @@ public class Clientes extends javax.swing.JFrame {
 
     private void btnCrearRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearRegistroActionPerformed
         // TODO add your handling code here:
-        /*
-        Date fechaMov = Date.from(
-            jCalRegistro.getSelectedDate().atStartOfDay(
-                ZoneId.systemDefault()
-            ).toInstant());
-        SimpleDateFormat formato = new SimpleDateFormat("yyyy/MM/dd");
-        String fechaFormateada = formato.format(fechaMov);
-        */
         String nombre = jtfNombre.getText().trim();
         String apellidoP = jtfApellidoP.getText().trim();
         String apellidoM = jtfApellidoM.getText().trim();
@@ -965,6 +959,20 @@ public class Clientes extends javax.swing.JFrame {
         // TODO add your handling code here:
         limpiarCampos();
     }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void btnSidebarConsultasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSidebarConsultasActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        Mascotas mascotas = new Mascotas();
+        mascotas.setVisible(true);
+    }//GEN-LAST:event_btnSidebarConsultasActionPerformed
+
+    private void btnSidebarServiciosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSidebarServiciosActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        Servicios servicios = new Servicios();
+        servicios.setVisible(true);
+    }//GEN-LAST:event_btnSidebarServiciosActionPerformed
 
     /**
      * @param args the command line arguments

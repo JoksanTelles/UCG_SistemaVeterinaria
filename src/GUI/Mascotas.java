@@ -263,6 +263,7 @@ public class Mascotas extends javax.swing.JFrame {
         btnSidebarClientes.setFocusPainted(false);
         btnSidebarClientes.setMargin(new java.awt.Insets(18, 18, 18, 18));
         btnSidebarClientes.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/SidebarIcon_ClientesHover.png"))); // NOI18N
+        btnSidebarClientes.addActionListener(this::btnSidebarClientesActionPerformed);
         jPanel2.add(btnSidebarClientes);
 
         btnSidebarMascotas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/SidebarIcon_Mascotas.png"))); // NOI18N
@@ -290,6 +291,7 @@ public class Mascotas extends javax.swing.JFrame {
         btnSidebarServicios.setFocusPainted(false);
         btnSidebarServicios.setMargin(new java.awt.Insets(18, 18, 18, 18));
         btnSidebarServicios.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/SidebarIcon_ServiciosHover.png"))); // NOI18N
+        btnSidebarServicios.addActionListener(this::btnSidebarServiciosActionPerformed);
         jPanel2.add(btnSidebarServicios);
 
         jPanel1.add(jPanel2, new java.awt.GridBagConstraints());
@@ -457,7 +459,6 @@ public class Mascotas extends javax.swing.JFrame {
         cbEspecie.setMaximumSize(new java.awt.Dimension(32767, 28));
         cbEspecie.setMinimumSize(new java.awt.Dimension(72, 28));
         cbEspecie.setPreferredSize(new java.awt.Dimension(72, 28));
-        cbEspecie.setSize(new java.awt.Dimension(72, 28));
         jPanel12.add(cbEspecie);
 
         jPanel6.add(jPanel12);
@@ -499,7 +500,6 @@ public class Mascotas extends javax.swing.JFrame {
         cbRaza.setMaximumSize(new java.awt.Dimension(32767, 28));
         cbRaza.setMinimumSize(new java.awt.Dimension(72, 28));
         cbRaza.setPreferredSize(new java.awt.Dimension(72, 28));
-        cbRaza.setSize(new java.awt.Dimension(72, 28));
         jPanel14.add(cbRaza);
 
         jPanel6.add(jPanel14);
@@ -547,7 +547,6 @@ public class Mascotas extends javax.swing.JFrame {
         cbSexo.setMaximumSize(new java.awt.Dimension(32767, 28));
         cbSexo.setMinimumSize(new java.awt.Dimension(72, 28));
         cbSexo.setPreferredSize(new java.awt.Dimension(72, 28));
-        cbSexo.setSize(new java.awt.Dimension(72, 28));
         jPanel18.add(cbSexo);
 
         jPanel6.add(jPanel18);
@@ -571,7 +570,6 @@ public class Mascotas extends javax.swing.JFrame {
         cbVacuna.setMaximumSize(new java.awt.Dimension(32767, 28));
         cbVacuna.setMinimumSize(new java.awt.Dimension(72, 28));
         cbVacuna.setPreferredSize(new java.awt.Dimension(72, 28));
-        cbVacuna.setSize(new java.awt.Dimension(72, 28));
         jPanel20.add(cbVacuna);
 
         jPanel6.add(jPanel20);
@@ -593,7 +591,6 @@ public class Mascotas extends javax.swing.JFrame {
         cbCliente.setMaximumSize(new java.awt.Dimension(32767, 28));
         cbCliente.setMinimumSize(new java.awt.Dimension(72, 28));
         cbCliente.setPreferredSize(new java.awt.Dimension(72, 28));
-        cbCliente.setSize(new java.awt.Dimension(72, 28));
         jPanel25.add(cbCliente);
 
         jPanel6.add(jPanel25);
@@ -642,10 +639,11 @@ public class Mascotas extends javax.swing.JFrame {
         btnCrearRegistro.setText("Crear registro");
         btnCrearRegistro.setAlignmentX(0.5F);
         btnCrearRegistro.setBorderPainted(false);
+        btnCrearRegistro.setFocusPainted(false);
         btnCrearRegistro.setFocusable(false);
         btnCrearRegistro.setMaximumSize(new java.awt.Dimension(75000, 23));
-        btnCrearRegistro.setOpaque(true);
         btnCrearRegistro.setPreferredSize(new java.awt.Dimension(286, 40));
+        btnCrearRegistro.setRequestFocusEnabled(false);
         btnCrearRegistro.addActionListener(this::btnCrearRegistroActionPerformed);
         jPanel9.add(btnCrearRegistro);
 
@@ -1005,6 +1003,20 @@ public class Mascotas extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnSidebarClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSidebarClientesActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        Clientes clientes = new Clientes();
+        clientes.setVisible(true);
+    }//GEN-LAST:event_btnSidebarClientesActionPerformed
+
+    private void btnSidebarServiciosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSidebarServiciosActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        Servicios servicios = new Servicios();
+        servicios.setVisible(true);
+    }//GEN-LAST:event_btnSidebarServiciosActionPerformed
 
     /**
      * @param args the command line arguments

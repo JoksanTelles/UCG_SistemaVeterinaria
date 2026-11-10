@@ -149,6 +149,9 @@
                           <Image iconType="3" name="/img/SidebarIcon_ClientesHover.png"/>
                         </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSidebarClientesActionPerformed"/>
+                      </Events>
                     </Component>
                     <Component class="javax.swing.JButton" name="btnSidebarMascotas">
                       <Properties>
@@ -200,6 +203,9 @@
                           <Image iconType="3" name="/img/SidebarIcon_ServiciosHover.png"/>
                         </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSidebarServiciosActionPerformed"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>
@@ -622,9 +628,6 @@
                                             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                               <Dimension value="[72, 28]"/>
                                             </Property>
-                                            <Property name="size" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                                              <Dimension value="[72, 28]"/>
-                                            </Property>
                                           </Properties>
                                           <AuxValues>
                                             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -721,9 +724,6 @@
                                               <Dimension value="[72, 28]"/>
                                             </Property>
                                             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                                              <Dimension value="[72, 28]"/>
-                                            </Property>
-                                            <Property name="size" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                               <Dimension value="[72, 28]"/>
                                             </Property>
                                           </Properties>
@@ -845,9 +845,6 @@
                                             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                               <Dimension value="[72, 28]"/>
                                             </Property>
-                                            <Property name="size" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                                              <Dimension value="[72, 28]"/>
-                                            </Property>
                                           </Properties>
                                           <AuxValues>
                                             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -911,9 +908,6 @@
                                             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                               <Dimension value="[72, 28]"/>
                                             </Property>
-                                            <Property name="size" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                                              <Dimension value="[72, 28]"/>
-                                            </Property>
                                           </Properties>
                                           <AuxValues>
                                             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -967,9 +961,6 @@
                                               <Dimension value="[72, 28]"/>
                                             </Property>
                                             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                                              <Dimension value="[72, 28]"/>
-                                            </Property>
-                                            <Property name="size" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                               <Dimension value="[72, 28]"/>
                                             </Property>
                                           </Properties>
@@ -1066,14 +1057,15 @@
                                     <Property name="text" type="java.lang.String" value="Crear registro"/>
                                     <Property name="alignmentX" type="float" value="0.5"/>
                                     <Property name="borderPainted" type="boolean" value="false"/>
+                                    <Property name="focusPainted" type="boolean" value="false"/>
                                     <Property name="focusable" type="boolean" value="false"/>
                                     <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                       <Dimension value="[75000, 23]"/>
                                     </Property>
-                                    <Property name="opaque" type="boolean" value="true"/>
                                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                       <Dimension value="[286, 40]"/>
                                     </Property>
+                                    <Property name="requestFocusEnabled" type="boolean" value="false"/>
                                   </Properties>
                                   <Events>
                                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCrearRegistroActionPerformed"/>

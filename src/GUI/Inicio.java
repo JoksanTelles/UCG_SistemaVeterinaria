@@ -1,20 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package GUI;
 
-/**
- *
- * @author joksa
- */
 public class Inicio extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Inicio.class.getName());
-
-    /**
-     * Creates new form Inicio
-     */
     public Inicio() {
         initComponents();
         
@@ -52,7 +39,7 @@ public class Inicio extends javax.swing.JFrame {
         CardIconCitas1 = new javax.swing.JLabel();
         CardTitleCitas1 = new javax.swing.JLabel();
         CardDescription1 = new javax.swing.JLabel();
-        BtnVerCitas1 = new javax.swing.JButton();
+        BtnVerClientes = new javax.swing.JButton();
         CardMascotas = new javax.swing.JPanel();
         CardBorder2 = new javax.swing.JPanel();
         CardContent2 = new javax.swing.JPanel();
@@ -60,7 +47,7 @@ public class Inicio extends javax.swing.JFrame {
         CardIconCitas2 = new javax.swing.JLabel();
         CardTitleCitas2 = new javax.swing.JLabel();
         CardDescription2 = new javax.swing.JLabel();
-        BtnVerCitas2 = new javax.swing.JButton();
+        BtnVerMascotas = new javax.swing.JButton();
         CardLayoutPart2 = new javax.swing.JPanel();
         CardConsultas = new javax.swing.JPanel();
         CardBorder4 = new javax.swing.JPanel();
@@ -69,7 +56,7 @@ public class Inicio extends javax.swing.JFrame {
         CardIconCitas4 = new javax.swing.JLabel();
         CardTitleCitas4 = new javax.swing.JLabel();
         CardDescription4 = new javax.swing.JLabel();
-        BtnVerCitas4 = new javax.swing.JButton();
+        BtnVerConsultas = new javax.swing.JButton();
         CardServicios = new javax.swing.JPanel();
         CardBorder6 = new javax.swing.JPanel();
         CardContent6 = new javax.swing.JPanel();
@@ -77,7 +64,7 @@ public class Inicio extends javax.swing.JFrame {
         CardIconCitas6 = new javax.swing.JLabel();
         CardTitleCitas6 = new javax.swing.JLabel();
         CardDescription6 = new javax.swing.JLabel();
-        BtnVerCitas6 = new javax.swing.JButton();
+        BtnVerServicios = new javax.swing.JButton();
         SpaceBottomCardContainer = new javax.swing.JPanel();
         Footer = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -89,7 +76,6 @@ public class Inicio extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(1080, 640));
 
         MainContent.setBackground(new java.awt.Color(251, 250, 249));
-        MainContent.setAlignmentX(0.5F);
         MainContent.setLayout(new javax.swing.BoxLayout(MainContent, javax.swing.BoxLayout.Y_AXIS));
 
         Header.setBorder(javax.swing.BorderFactory.createEmptyBorder(64, 0, 0, 0));
@@ -229,19 +215,19 @@ public class Inicio extends javax.swing.JFrame {
 
         CardBorder1.add(CardContent1);
 
-        BtnVerCitas1.setBackground(new java.awt.Color(242, 241, 241));
-        BtnVerCitas1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 13)); // NOI18N
-        BtnVerCitas1.setForeground(new java.awt.Color(89, 79, 76));
-        BtnVerCitas1.setText("Ver clientes");
-        BtnVerCitas1.setAlignmentX(0.5F);
-        BtnVerCitas1.setBorderPainted(false);
-        BtnVerCitas1.setFocusPainted(false);
-        BtnVerCitas1.setFocusable(false);
-        BtnVerCitas1.setMaximumSize(new java.awt.Dimension(75000, 36));
-        BtnVerCitas1.setMinimumSize(new java.awt.Dimension(75, 36));
-        BtnVerCitas1.setPreferredSize(new java.awt.Dimension(75, 36));
-        BtnVerCitas1.addActionListener(this::BtnVerCitas1ActionPerformed);
-        CardBorder1.add(BtnVerCitas1);
+        BtnVerClientes.setBackground(new java.awt.Color(242, 241, 241));
+        BtnVerClientes.setFont(new java.awt.Font("Segoe UI Semibold", 0, 13)); // NOI18N
+        BtnVerClientes.setForeground(new java.awt.Color(89, 79, 76));
+        BtnVerClientes.setText("Ver clientes");
+        BtnVerClientes.setAlignmentX(0.5F);
+        BtnVerClientes.setBorderPainted(false);
+        BtnVerClientes.setFocusPainted(false);
+        BtnVerClientes.setFocusable(false);
+        BtnVerClientes.setMaximumSize(new java.awt.Dimension(75000, 36));
+        BtnVerClientes.setMinimumSize(new java.awt.Dimension(75, 36));
+        BtnVerClientes.setPreferredSize(new java.awt.Dimension(75, 36));
+        BtnVerClientes.addActionListener(this::BtnVerClientesActionPerformed);
+        CardBorder1.add(BtnVerClientes);
 
         CardClientes.add(CardBorder1);
 
@@ -288,18 +274,19 @@ public class Inicio extends javax.swing.JFrame {
 
         CardBorder2.add(CardContent2);
 
-        BtnVerCitas2.setBackground(new java.awt.Color(242, 241, 241));
-        BtnVerCitas2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 13)); // NOI18N
-        BtnVerCitas2.setForeground(new java.awt.Color(89, 79, 76));
-        BtnVerCitas2.setText("Ver mascotas");
-        BtnVerCitas2.setAlignmentX(0.5F);
-        BtnVerCitas2.setBorderPainted(false);
-        BtnVerCitas2.setFocusPainted(false);
-        BtnVerCitas2.setFocusable(false);
-        BtnVerCitas2.setMaximumSize(new java.awt.Dimension(75000, 36));
-        BtnVerCitas2.setMinimumSize(new java.awt.Dimension(75, 36));
-        BtnVerCitas2.setPreferredSize(new java.awt.Dimension(75, 36));
-        CardBorder2.add(BtnVerCitas2);
+        BtnVerMascotas.setBackground(new java.awt.Color(242, 241, 241));
+        BtnVerMascotas.setFont(new java.awt.Font("Segoe UI Semibold", 0, 13)); // NOI18N
+        BtnVerMascotas.setForeground(new java.awt.Color(89, 79, 76));
+        BtnVerMascotas.setText("Ver mascotas");
+        BtnVerMascotas.setAlignmentX(0.5F);
+        BtnVerMascotas.setBorderPainted(false);
+        BtnVerMascotas.setFocusPainted(false);
+        BtnVerMascotas.setFocusable(false);
+        BtnVerMascotas.setMaximumSize(new java.awt.Dimension(75000, 36));
+        BtnVerMascotas.setMinimumSize(new java.awt.Dimension(75, 36));
+        BtnVerMascotas.setPreferredSize(new java.awt.Dimension(75, 36));
+        BtnVerMascotas.addActionListener(this::BtnVerMascotasActionPerformed);
+        CardBorder2.add(BtnVerMascotas);
 
         CardMascotas.add(CardBorder2);
 
@@ -351,18 +338,18 @@ public class Inicio extends javax.swing.JFrame {
 
         CardBorder4.add(CardContent4);
 
-        BtnVerCitas4.setBackground(new java.awt.Color(242, 241, 241));
-        BtnVerCitas4.setFont(new java.awt.Font("Segoe UI Semibold", 0, 13)); // NOI18N
-        BtnVerCitas4.setForeground(new java.awt.Color(89, 79, 76));
-        BtnVerCitas4.setText("Ver consultas");
-        BtnVerCitas4.setAlignmentX(0.5F);
-        BtnVerCitas4.setBorderPainted(false);
-        BtnVerCitas4.setFocusPainted(false);
-        BtnVerCitas4.setFocusable(false);
-        BtnVerCitas4.setMaximumSize(new java.awt.Dimension(75000, 36));
-        BtnVerCitas4.setMinimumSize(new java.awt.Dimension(75, 36));
-        BtnVerCitas4.setPreferredSize(new java.awt.Dimension(75, 36));
-        CardBorder4.add(BtnVerCitas4);
+        BtnVerConsultas.setBackground(new java.awt.Color(242, 241, 241));
+        BtnVerConsultas.setFont(new java.awt.Font("Segoe UI Semibold", 0, 13)); // NOI18N
+        BtnVerConsultas.setForeground(new java.awt.Color(89, 79, 76));
+        BtnVerConsultas.setText("Ver consultas");
+        BtnVerConsultas.setAlignmentX(0.5F);
+        BtnVerConsultas.setBorderPainted(false);
+        BtnVerConsultas.setFocusPainted(false);
+        BtnVerConsultas.setFocusable(false);
+        BtnVerConsultas.setMaximumSize(new java.awt.Dimension(75000, 36));
+        BtnVerConsultas.setMinimumSize(new java.awt.Dimension(75, 36));
+        BtnVerConsultas.setPreferredSize(new java.awt.Dimension(75, 36));
+        CardBorder4.add(BtnVerConsultas);
 
         CardConsultas.add(CardBorder4);
 
@@ -409,18 +396,18 @@ public class Inicio extends javax.swing.JFrame {
 
         CardBorder6.add(CardContent6);
 
-        BtnVerCitas6.setBackground(new java.awt.Color(242, 241, 241));
-        BtnVerCitas6.setFont(new java.awt.Font("Segoe UI Semibold", 0, 13)); // NOI18N
-        BtnVerCitas6.setForeground(new java.awt.Color(89, 79, 76));
-        BtnVerCitas6.setText("Ver servicios");
-        BtnVerCitas6.setAlignmentX(0.5F);
-        BtnVerCitas6.setBorderPainted(false);
-        BtnVerCitas6.setFocusPainted(false);
-        BtnVerCitas6.setFocusable(false);
-        BtnVerCitas6.setMaximumSize(new java.awt.Dimension(75000, 36));
-        BtnVerCitas6.setMinimumSize(new java.awt.Dimension(75, 36));
-        BtnVerCitas6.setPreferredSize(new java.awt.Dimension(75, 36));
-        CardBorder6.add(BtnVerCitas6);
+        BtnVerServicios.setBackground(new java.awt.Color(242, 241, 241));
+        BtnVerServicios.setFont(new java.awt.Font("Segoe UI Semibold", 0, 13)); // NOI18N
+        BtnVerServicios.setForeground(new java.awt.Color(89, 79, 76));
+        BtnVerServicios.setText("Ver servicios");
+        BtnVerServicios.setAlignmentX(0.5F);
+        BtnVerServicios.setBorderPainted(false);
+        BtnVerServicios.setFocusPainted(false);
+        BtnVerServicios.setFocusable(false);
+        BtnVerServicios.setMaximumSize(new java.awt.Dimension(75000, 36));
+        BtnVerServicios.setMinimumSize(new java.awt.Dimension(75, 36));
+        BtnVerServicios.setPreferredSize(new java.awt.Dimension(75, 36));
+        CardBorder6.add(BtnVerServicios);
 
         CardServicios.add(CardBorder6);
 
@@ -502,12 +489,19 @@ public class Inicio extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void BtnVerCitas1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnVerCitas1ActionPerformed
+    private void BtnVerClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnVerClientesActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
         Clientes clientes = new Clientes();
         clientes.setVisible(true);
-    }//GEN-LAST:event_BtnVerCitas1ActionPerformed
+    }//GEN-LAST:event_BtnVerClientesActionPerformed
+
+    private void BtnVerMascotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnVerMascotasActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        Mascotas mascotas = new Mascotas();
+        mascotas.setVisible(true);
+    }//GEN-LAST:event_BtnVerMascotasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -518,16 +512,6 @@ public class Inicio extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
-        }
         //</editor-fold>
 
         /* Create and display the form */
@@ -536,10 +520,10 @@ public class Inicio extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnVerCitas;
-    private javax.swing.JButton BtnVerCitas1;
-    private javax.swing.JButton BtnVerCitas2;
-    private javax.swing.JButton BtnVerCitas4;
-    private javax.swing.JButton BtnVerCitas6;
+    private javax.swing.JButton BtnVerClientes;
+    private javax.swing.JButton BtnVerConsultas;
+    private javax.swing.JButton BtnVerMascotas;
+    private javax.swing.JButton BtnVerServicios;
     private javax.swing.JPanel CardBorder;
     private javax.swing.JPanel CardBorder1;
     private javax.swing.JPanel CardBorder2;

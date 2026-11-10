@@ -7,14 +7,12 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class Servicios extends javax.swing.JFrame {
-    
     ServiciosDAO serviciosDAO = new ServiciosDAO();
     DefaultTableModel modelo;
+    
     int estado = 1;
     int id_actual = -1;
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Servicios.class.getName());
-
     public Servicios() {
         initComponents();
         
@@ -40,7 +38,7 @@ public class Servicios extends javax.swing.JFrame {
     }
     
     public void limpiarCampos() {
-        cbTipo.setSelectedIndex(-1);
+        jtfTipo.setText("");
         jtfCosto.setText("");
         jtfDescripcion.setText("");
         
@@ -67,8 +65,8 @@ public class Servicios extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         btnSidebarCitas = new javax.swing.JButton();
         btnSidebarClientes = new javax.swing.JButton();
-        btnSidebarMascotas = new javax.swing.JButton();
         btnSidebarConsultas = new javax.swing.JButton();
+        btnSidebarMascotas = new javax.swing.JButton();
         btnSidebarServicios = new javax.swing.JButton();
         SpaceSidebar = new javax.swing.JLabel();
         Content = new javax.swing.JPanel();
@@ -91,13 +89,14 @@ public class Servicios extends javax.swing.JFrame {
         jPanel6 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
         jlNombre = new javax.swing.JLabel();
-        cbTipo = new javax.swing.JComboBox<>();
+        jtfTipo = new javax.swing.JTextField();
         jPanel12 = new javax.swing.JPanel();
         jlNombre1 = new javax.swing.JLabel();
         jtfCosto = new javax.swing.JTextField();
         jPanel13 = new javax.swing.JPanel();
         jlNombre2 = new javax.swing.JLabel();
-        jtfDescripcion = new javax.swing.JTextField();
+        JScrollPane = new javax.swing.JScrollPane();
+        jtfDescripcion = new javax.swing.JTextArea();
         jPanel17 = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
         btnLimpiar = new javax.swing.JButton();
@@ -167,25 +166,27 @@ public class Servicios extends javax.swing.JFrame {
         btnSidebarClientes.setFocusPainted(false);
         btnSidebarClientes.setMargin(new java.awt.Insets(18, 18, 18, 18));
         btnSidebarClientes.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/SidebarIcon_ClientesHover.png"))); // NOI18N
+        btnSidebarClientes.addActionListener(this::btnSidebarClientesActionPerformed);
         jPanel2.add(btnSidebarClientes);
 
-        btnSidebarMascotas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/SidebarIcon_Mascotas.png"))); // NOI18N
-        btnSidebarMascotas.setAlignmentX(0.5F);
-        btnSidebarMascotas.setBorderPainted(false);
-        btnSidebarMascotas.setContentAreaFilled(false);
-        btnSidebarMascotas.setFocusPainted(false);
-        btnSidebarMascotas.setMargin(new java.awt.Insets(18, 18, 18, 18));
-        btnSidebarMascotas.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/SidebarIcon_MascotasHover.png"))); // NOI18N
-        jPanel2.add(btnSidebarMascotas);
-
-        btnSidebarConsultas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/SidebarIcon_Consultas.png"))); // NOI18N
+        btnSidebarConsultas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/SidebarIcon_Mascotas.png"))); // NOI18N
         btnSidebarConsultas.setAlignmentX(0.5F);
         btnSidebarConsultas.setBorderPainted(false);
         btnSidebarConsultas.setContentAreaFilled(false);
         btnSidebarConsultas.setFocusPainted(false);
         btnSidebarConsultas.setMargin(new java.awt.Insets(18, 18, 18, 18));
-        btnSidebarConsultas.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/SidebarIcon_ConsultasHover.png"))); // NOI18N
+        btnSidebarConsultas.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/SidebarIcon_MascotasHover.png"))); // NOI18N
         jPanel2.add(btnSidebarConsultas);
+
+        btnSidebarMascotas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/SidebarIcon_Consultas.png"))); // NOI18N
+        btnSidebarMascotas.setAlignmentX(0.5F);
+        btnSidebarMascotas.setBorderPainted(false);
+        btnSidebarMascotas.setContentAreaFilled(false);
+        btnSidebarMascotas.setFocusPainted(false);
+        btnSidebarMascotas.setMargin(new java.awt.Insets(18, 18, 18, 18));
+        btnSidebarMascotas.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/SidebarIcon_ConsultasHover.png"))); // NOI18N
+        btnSidebarMascotas.addActionListener(this::btnSidebarMascotasActionPerformed);
+        jPanel2.add(btnSidebarMascotas);
 
         btnSidebarServicios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/SidebarIcon_Servicios.png"))); // NOI18N
         btnSidebarServicios.setAlignmentX(0.5F);
@@ -332,16 +333,16 @@ public class Servicios extends javax.swing.JFrame {
         jlNombre.setPreferredSize(new java.awt.Dimension(80, 16));
         jPanel8.add(jlNombre);
 
-        cbTipo.setBackground(new java.awt.Color(251, 250, 249));
-        cbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cbTipo.setMaximumSize(new java.awt.Dimension(32767, 28));
-        cbTipo.setMinimumSize(new java.awt.Dimension(72, 28));
-        cbTipo.setPreferredSize(new java.awt.Dimension(72, 28));
-        jPanel8.add(cbTipo);
+        jtfTipo.setMargin(new java.awt.Insets(2, 8, 2, 8));
+        jtfTipo.setMaximumSize(new java.awt.Dimension(2147483647, 28));
+        jtfTipo.setMinimumSize(new java.awt.Dimension(64, 28));
+        jtfTipo.setPreferredSize(new java.awt.Dimension(71, 28));
+        jPanel8.add(jtfTipo);
 
         jPanel6.add(jPanel8);
 
         jPanel12.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 8, 0));
+        jPanel12.setMaximumSize(new java.awt.Dimension(2147483647, 36));
         jPanel12.setOpaque(false);
         jPanel12.setPreferredSize(new java.awt.Dimension(243, 36));
         jPanel12.setLayout(new javax.swing.BoxLayout(jPanel12, javax.swing.BoxLayout.LINE_AXIS));
@@ -360,6 +361,7 @@ public class Servicios extends javax.swing.JFrame {
         jtfCosto.setForeground(new java.awt.Color(89, 79, 76));
         jtfCosto.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         jtfCosto.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(215, 210, 208), 1, true));
+        jtfCosto.setMargin(new java.awt.Insets(2, 8, 2, 8));
         jtfCosto.setMaximumSize(new java.awt.Dimension(2147483647, 28));
         jtfCosto.setMinimumSize(new java.awt.Dimension(64, 28));
         jtfCosto.setPreferredSize(new java.awt.Dimension(71, 28));
@@ -367,6 +369,7 @@ public class Servicios extends javax.swing.JFrame {
 
         jPanel6.add(jPanel12);
 
+        jPanel13.setBackground(new java.awt.Color(255, 255, 255));
         jPanel13.setMaximumSize(new java.awt.Dimension(2147483647, 96));
         jPanel13.setMinimumSize(new java.awt.Dimension(144, 96));
         jPanel13.setOpaque(false);
@@ -383,15 +386,14 @@ public class Servicios extends javax.swing.JFrame {
         jlNombre2.setPreferredSize(new java.awt.Dimension(80, 16));
         jPanel13.add(jlNombre2);
 
-        jtfDescripcion.setBackground(new java.awt.Color(251, 250, 249));
-        jtfDescripcion.setForeground(new java.awt.Color(89, 79, 76));
-        jtfDescripcion.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        jtfDescripcion.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(215, 210, 208), 1, true));
-        jtfDescripcion.setMaximumSize(new java.awt.Dimension(2147483647, 96));
-        jtfDescripcion.setMinimumSize(new java.awt.Dimension(64, 120));
-        jtfDescripcion.setPreferredSize(new java.awt.Dimension(71, 120));
-        jtfDescripcion.addActionListener(this::jtfDescripcionActionPerformed);
-        jPanel13.add(jtfDescripcion);
+        JScrollPane.setBackground(new java.awt.Color(255, 255, 255));
+
+        jtfDescripcion.setColumns(1);
+        jtfDescripcion.setRows(5);
+        jtfDescripcion.setWrapStyleWord(true);
+        JScrollPane.setViewportView(jtfDescripcion);
+
+        jPanel13.add(JScrollPane);
 
         jPanel6.add(jPanel13);
 
@@ -440,10 +442,13 @@ public class Servicios extends javax.swing.JFrame {
         btnCrearRegistro.setText("Crear registro");
         btnCrearRegistro.setAlignmentX(0.5F);
         btnCrearRegistro.setBorderPainted(false);
+        btnCrearRegistro.setDefaultCapable(false);
+        btnCrearRegistro.setFocusPainted(false);
         btnCrearRegistro.setFocusable(false);
         btnCrearRegistro.setMaximumSize(new java.awt.Dimension(75000, 23));
-        btnCrearRegistro.setOpaque(true);
         btnCrearRegistro.setPreferredSize(new java.awt.Dimension(286, 40));
+        btnCrearRegistro.setRequestFocusEnabled(false);
+        btnCrearRegistro.setVerifyInputWhenFocusTarget(false);
         btnCrearRegistro.addActionListener(this::btnCrearRegistroActionPerformed);
         jPanel9.add(btnCrearRegistro);
 
@@ -681,10 +686,6 @@ public class Servicios extends javax.swing.JFrame {
         inicio.setVisible(true);
     }//GEN-LAST:event_btnVolverInicioActionPerformed
 
-    private void jtfDescripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfDescripcionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtfDescripcionActionPerformed
-
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
         // TODO add your handling code here:
         limpiarCampos();
@@ -692,100 +693,52 @@ public class Servicios extends javax.swing.JFrame {
 
     private void btnCrearRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearRegistroActionPerformed
         // TODO add your handling code here:
-        /*
-        Date fechaMov = Date.from(
-            jCalRegistro.getSelectedDate().atStartOfDay(
-                ZoneId.systemDefault()
-            ).toInstant());
-            SimpleDateFormat formato = new SimpleDateFormat("yyyy/MM/dd");
-            String fechaFormateada = formato.format(fechaMov);
-            */
-            String nombre = jtfNombre.getText().trim();
-            String apellidoP = jtfCosto.getText().trim();
-            String apellidoM = jtfDescripcion.getText().trim();
-            String telefono = jtfTelefono.getText().trim();
-            String correo = jtfCorreo.getText().trim();
-            String direccion = jtfDireccion.getText().trim();
-            java.util.Date fechaSeleccionada = jCalRegistro.getDate();
+        String tipo = jtfTipo.getText().trim();
+        double costo = Double.parseDouble(jtfCosto.getText().trim());
+        String descripcion = jtfDescripcion.getText().trim();
 
-            if (nombre.isEmpty() || apellidoP.isEmpty() || apellidoM.isEmpty() ||
-                telefono.isEmpty() || correo.isEmpty() || direccion.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Por favor complete todos los campos obligatorios.");
-                return;
+        if (tipo.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor complete todos los campos obligatorios.");
+            return;
+        }
+
+        ServiciosPOJO servicio = new ServiciosPOJO();
+        servicio.setTipoServicio(tipo);
+        servicio.setCosto(costo);
+        servicio.setDescripcion(descripcion);
+
+        if (estado == 1) {
+            if (serviciosDAO.registrarServicio(servicio)) {
+                limpiarCampos();
+                listarServicios();
             }
-
-            if (fechaSeleccionada == null) {
-                JOptionPane.showMessageDialog(this, "Por favor seleccione una fecha de registro.");
-                return;
+        } else {
+            servicio.setIdServicio(id_actual);
+            if (serviciosDAO.modificarServicio(servicio)) {
+                JOptionPane.showMessageDialog(this, "Cliente actualizado correctamente.");
+                limpiarCampos();
+                listarServicios();
             }
-
-            java.sql.Date fecha = new java.sql.Date(fechaSeleccionada.getTime());
-
-            ClientesPOJO cliente = new ClientesPOJO();
-            cliente.setNombre(nombre);
-            cliente.setApellidoP(apellidoP);
-            cliente.setApellidoM(apellidoM);
-            cliente.setTelefono(telefono);
-            cliente.setCorreo(correo);
-            cliente.setDireccion(direccion);
-            cliente.setFechaRegistro(fecha);
-
-            if (estado == 1) {
-                // Modo Crear
-                if (clientesDAO.registrarCliente(cliente)) {
-                    limpiarCampos();
-                    listarClientes();
-                }
-            } else {
-                // Modo Editar (utiliza el id_actual que guardó btnEditar)
-                cliente.setIdCliente(id_actual);
-                if (clientesDAO.modificarCliente(cliente)) {
-                    JOptionPane.showMessageDialog(this, "Cliente actualizado correctamente.");
-                    limpiarCampos(); // limpiarCampos() ya regresa estado a 1 e id_actual a -1
-                    listarClientes();
-                }
-            }
+        }
     }//GEN-LAST:event_btnCrearRegistroActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         // TODO add your handling code here:
         int fila = TablaServicios.getSelectedRow();
 
-        // Si no ha seleccionado ninguna fila de la tabla, avisamos y salimos
         if (fila == -1) {
             JOptionPane.showMessageDialog(this, "Seleccione un cliente de la tabla para editar.");
             return;
         }
 
-        // 1. Guardamos el ID que está en la columna 0 de la fila seleccionada
         id_actual = Integer.parseInt(TablaServicios.getValueAt(fila, 0).toString());
 
-        // 2. Cambiamos el modo a edición
         estado = 2;
         btnCrearRegistro.setText("Guardar cambios");
 
-        // 3. Pasamos los datos a las cajas de texto
-        jtfNombre.setText(TablaServicios.getValueAt(fila, 1).toString());
+        jtfTipo.setText(TablaServicios.getValueAt(fila, 1).toString());
         jtfCosto.setText(TablaServicios.getValueAt(fila, 2).toString());
         jtfDescripcion.setText(TablaServicios.getValueAt(fila, 3).toString());
-        jtfTelefono.setText(TablaServicios.getValueAt(fila, 4).toString());
-        jtfCorreo.setText(TablaServicios.getValueAt(fila, 5).toString());
-        jtfDireccion.setText(TablaServicios.getValueAt(fila, 6).toString());
-
-        // 4. Cargamos la fecha en el JCalendar
-        Object valorFecha = TablaServicios.getValueAt(fila, 7);
-        if (valorFecha != null && !valorFecha.toString().trim().isEmpty()) {
-            try {
-                java.text.SimpleDateFormat formato = new java.text.SimpleDateFormat("yyyy-MM-dd");
-                java.util.Date fechaParseada = formato.parse(valorFecha.toString().trim());
-                jCalRegistro.setDate(fechaParseada);
-            } catch (java.text.ParseException e) {
-                System.err.println("Error al parsear la fecha: " + e.getMessage());
-                jCalRegistro.setDate(null);
-            }
-        } else {
-            jCalRegistro.setDate(null);
-        }
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
@@ -813,12 +766,26 @@ public class Servicios extends javax.swing.JFrame {
 
         // 4. Si el usuario confirma (presiona Sí)
         if (confirmacion == JOptionPane.YES_OPTION) {
-            if (clientesDAO.eliminarCliente(idEliminar)) {
+            if (serviciosDAO.eliminarServicio(idEliminar)) {
                 limpiarCampos();   // Restablece los formularios por si estaba cargado en edición
-                listarClientes();  // Vuelve a consultar la base de datos y refresca la tabla
+                listarServicios();  // Vuelve a consultar la base de datos y refresca la tabla
             }
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnSidebarClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSidebarClientesActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        Clientes clientes = new Clientes();
+        clientes.setVisible(true);
+    }//GEN-LAST:event_btnSidebarClientesActionPerformed
+
+    private void btnSidebarMascotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSidebarMascotasActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        Mascotas mascotas = new Mascotas();
+        mascotas.setVisible(true);
+    }//GEN-LAST:event_btnSidebarMascotasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -829,16 +796,6 @@ public class Servicios extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
-        }
         //</editor-fold>
 
         /* Create and display the form */
@@ -854,6 +811,7 @@ public class Servicios extends javax.swing.JFrame {
     private javax.swing.JPanel Header;
     private javax.swing.JLabel IconModule;
     private javax.swing.JPanel IconTitleModule;
+    private javax.swing.JScrollPane JScrollPane;
     private javax.swing.JLabel LogoIcon;
     private javax.swing.JPanel MainContent;
     private javax.swing.JPanel SideElement;
@@ -877,7 +835,6 @@ public class Servicios extends javax.swing.JFrame {
     private javax.swing.JButton btnSidebarServicios;
     private javax.swing.JButton btnSoporte;
     private javax.swing.JButton btnVolverInicio;
-    private javax.swing.JComboBox<String> cbTipo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -906,6 +863,7 @@ public class Servicios extends javax.swing.JFrame {
     private javax.swing.JLabel jlNombre1;
     private javax.swing.JLabel jlNombre2;
     private javax.swing.JTextField jtfCosto;
-    private javax.swing.JTextField jtfDescripcion;
+    private javax.swing.JTextArea jtfDescripcion;
+    private javax.swing.JTextField jtfTipo;
     // End of variables declaration//GEN-END:variables
 }
