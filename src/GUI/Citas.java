@@ -1,22 +1,57 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package GUI;
 
-/**
- *
- * @author joksa
- */
+import DAO.CitasDAO;
+import POJO.CitasPOJO;
+import POJO.ServiciosPOJO;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 public class Citas extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Citas.class.getName());
-
-    /**
-     * Creates new form Citas
-     */
+    CitasDAO citasDAO = new CitasDAO();
+    DefaultTableModel modelo;
+    int estado = 1;
+    int id_actual = -1;
+    
     public Citas() {
         initComponents();
+        
+        listarCitas();
+    }
+    
+    public void listarCitas() {
+        List<CitasPOJO> cita = citasDAO.listarCitas();
+        modelo = (DefaultTableModel) TablaConsultas.getModel();
+        modelo.setRowCount(0);
+
+        for (int i = 0; i< cita.size(); i++) {
+            Object[] fila = new Object[6];
+            
+            fila[0] = cita.get(i).getIdCita();
+            fila[1] = cita.get(i).getFecha();
+            fila[2] = cita.get(i).getHora();
+            fila[3] = cita.get(i).getIdMascota();
+            fila[4] = cita.get(i).getIdServicio();
+            fila[5] = cita.get(i).getMotivo();
+
+            modelo.addRow(fila);
+        }
+    }
+    
+    public void limpiarCampos() {
+        jtfHora.setText("");
+        cbMascota.setSelectedIndex(-1);
+        cbServicio.setSelectedIndex(-1);
+        jtaMotivo.setText("");
+        
+        jDateChooser.setDate(new java.util.Date());
+        
+        TablaConsultas.clearSelection();
+        btnCrearRegistro.setText("Crear registro");
+        
+        id_actual = -1;
+        estado = 1;
     }
 
     /**
@@ -28,21 +63,841 @@ public class Citas extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        MainContent = new javax.swing.JPanel();
+        Sidebar = new javax.swing.JPanel();
+        LogoIcon = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        btnSidebarCitas = new javax.swing.JButton();
+        btnSidebarClientes = new javax.swing.JButton();
+        btnSidebarConsultas = new javax.swing.JButton();
+        btnSidebarMascotas = new javax.swing.JButton();
+        btnSidebarServicios = new javax.swing.JButton();
+        SpaceSidebar = new javax.swing.JLabel();
+        Content = new javax.swing.JPanel();
+        ContentContainer = new javax.swing.JPanel();
+        Header = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        btnVolverInicio = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        Container = new javax.swing.JPanel();
+        SideElement = new javax.swing.JPanel();
+        jPanel11 = new javax.swing.JPanel();
+        IconTitleModule = new javax.swing.JPanel();
+        IconModule = new javax.swing.JLabel();
+        TitleModule = new javax.swing.JLabel();
+        jPanel15 = new javax.swing.JPanel();
+        jPanel16 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jPanel23 = new javax.swing.JPanel();
+        jPanel6 = new javax.swing.JPanel();
+        jPanel12 = new javax.swing.JPanel();
+        jlNombre1 = new javax.swing.JLabel();
+        jDateChooser = new com.toedter.calendar.JDateChooser();
+        jPanel8 = new javax.swing.JPanel();
+        jlNombre = new javax.swing.JLabel();
+        jtfHora = new javax.swing.JTextField();
+        jPanel18 = new javax.swing.JPanel();
+        jlNombre4 = new javax.swing.JLabel();
+        cbMascota = new javax.swing.JComboBox<>();
+        jPanel19 = new javax.swing.JPanel();
+        jlNombre5 = new javax.swing.JLabel();
+        cbServicio = new javax.swing.JComboBox<>();
+        jPanel14 = new javax.swing.JPanel();
+        jlNombre3 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jtaMotivo = new javax.swing.JTextArea();
+        jPanel17 = new javax.swing.JPanel();
+        jPanel9 = new javax.swing.JPanel();
+        btnLimpiar = new javax.swing.JButton();
+        btnCrearRegistro = new javax.swing.JButton();
+        TableContainer = new javax.swing.JPanel();
+        TableContainerBorder = new javax.swing.JPanel();
+        TableContainerPadding = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        TablaConsultas = new javax.swing.JTable();
+        TableFooter = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        jPanel10 = new javax.swing.JPanel();
+        jPanel7 = new javax.swing.JPanel();
+        btnEditar = new javax.swing.JButton();
+        jPanel5 = new javax.swing.JPanel();
+        btnEliminar = new javax.swing.JButton();
+        Footer = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        FooterLinks = new javax.swing.JPanel();
+        jPanel22 = new javax.swing.JPanel();
+        btnSaberMas = new javax.swing.JButton();
+        jPanel21 = new javax.swing.JPanel();
+        btnSoporte = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        MainContent.setBackground(new java.awt.Color(255, 255, 255));
+        MainContent.setMinimumSize(new java.awt.Dimension(1080, 640));
+        MainContent.setLayout(new javax.swing.BoxLayout(MainContent, javax.swing.BoxLayout.X_AXIS));
+
+        Sidebar.setBackground(new java.awt.Color(255, 255, 255));
+        Sidebar.setMaximumSize(new java.awt.Dimension(56, 32767));
+        Sidebar.setMinimumSize(new java.awt.Dimension(56, 100));
+        Sidebar.setPreferredSize(new java.awt.Dimension(56, 680));
+        Sidebar.setLayout(new javax.swing.BoxLayout(Sidebar, javax.swing.BoxLayout.Y_AXIS));
+
+        LogoIcon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        LogoIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/LogoIcon.png"))); // NOI18N
+        LogoIcon.setAlignmentX(0.5F);
+        LogoIcon.setMaximumSize(new java.awt.Dimension(56, 56));
+        LogoIcon.setMinimumSize(new java.awt.Dimension(56, 56));
+        LogoIcon.setPreferredSize(new java.awt.Dimension(56, 56));
+        Sidebar.add(LogoIcon);
+
+        jPanel1.setOpaque(false);
+        jPanel1.setLayout(new java.awt.GridBagLayout());
+
+        jPanel2.setMaximumSize(new java.awt.Dimension(56, 280));
+        jPanel2.setMinimumSize(new java.awt.Dimension(56, 280));
+        jPanel2.setOpaque(false);
+        jPanel2.setPreferredSize(new java.awt.Dimension(56, 280));
+        jPanel2.setLayout(new java.awt.GridLayout(5, 1));
+
+        btnSidebarCitas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/SidebarIcon_Citas.png"))); // NOI18N
+        btnSidebarCitas.setAlignmentX(0.5F);
+        btnSidebarCitas.setBorderPainted(false);
+        btnSidebarCitas.setContentAreaFilled(false);
+        btnSidebarCitas.setFocusPainted(false);
+        btnSidebarCitas.setMargin(new java.awt.Insets(18, 18, 18, 18));
+        btnSidebarCitas.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/SidebarIcon_CitasHover.png"))); // NOI18N
+        jPanel2.add(btnSidebarCitas);
+
+        btnSidebarClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/SidebarIcon_Clientes.png"))); // NOI18N
+        btnSidebarClientes.setAlignmentX(0.5F);
+        btnSidebarClientes.setBorderPainted(false);
+        btnSidebarClientes.setContentAreaFilled(false);
+        btnSidebarClientes.setFocusPainted(false);
+        btnSidebarClientes.setMargin(new java.awt.Insets(18, 18, 18, 18));
+        btnSidebarClientes.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/SidebarIcon_ClientesHover.png"))); // NOI18N
+        btnSidebarClientes.addActionListener(this::btnSidebarClientesActionPerformed);
+        jPanel2.add(btnSidebarClientes);
+
+        btnSidebarConsultas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/SidebarIcon_Mascotas.png"))); // NOI18N
+        btnSidebarConsultas.setAlignmentX(0.5F);
+        btnSidebarConsultas.setBorderPainted(false);
+        btnSidebarConsultas.setContentAreaFilled(false);
+        btnSidebarConsultas.setFocusPainted(false);
+        btnSidebarConsultas.setMargin(new java.awt.Insets(18, 18, 18, 18));
+        btnSidebarConsultas.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/SidebarIcon_MascotasHover.png"))); // NOI18N
+        btnSidebarConsultas.addActionListener(this::btnSidebarConsultasActionPerformed);
+        jPanel2.add(btnSidebarConsultas);
+
+        btnSidebarMascotas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/SidebarIcon_Consultas.png"))); // NOI18N
+        btnSidebarMascotas.setAlignmentX(0.5F);
+        btnSidebarMascotas.setBorderPainted(false);
+        btnSidebarMascotas.setContentAreaFilled(false);
+        btnSidebarMascotas.setFocusPainted(false);
+        btnSidebarMascotas.setMargin(new java.awt.Insets(18, 18, 18, 18));
+        btnSidebarMascotas.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/SidebarIcon_ConsultasHover.png"))); // NOI18N
+        btnSidebarMascotas.addActionListener(this::btnSidebarMascotasActionPerformed);
+        jPanel2.add(btnSidebarMascotas);
+
+        btnSidebarServicios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/SidebarIcon_Servicios.png"))); // NOI18N
+        btnSidebarServicios.setAlignmentX(0.5F);
+        btnSidebarServicios.setBorderPainted(false);
+        btnSidebarServicios.setContentAreaFilled(false);
+        btnSidebarServicios.setFocusPainted(false);
+        btnSidebarServicios.setMargin(new java.awt.Insets(18, 18, 18, 18));
+        btnSidebarServicios.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/SidebarIcon_ServiciosHover.png"))); // NOI18N
+        btnSidebarServicios.addActionListener(this::btnSidebarServiciosActionPerformed);
+        jPanel2.add(btnSidebarServicios);
+
+        jPanel1.add(jPanel2, new java.awt.GridBagConstraints());
+
+        Sidebar.add(jPanel1);
+
+        SpaceSidebar.setAlignmentX(0.5F);
+        SpaceSidebar.setMaximumSize(new java.awt.Dimension(56, 56));
+        SpaceSidebar.setMinimumSize(new java.awt.Dimension(56, 56));
+        SpaceSidebar.setPreferredSize(new java.awt.Dimension(56, 56));
+        Sidebar.add(SpaceSidebar);
+
+        MainContent.add(Sidebar);
+
+        Content.setBackground(new java.awt.Color(215, 210, 208));
+        Content.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 1, 0, 0));
+        Content.setMinimumSize(new java.awt.Dimension(1024, 0));
+
+        ContentContainer.setBackground(new java.awt.Color(255, 255, 255));
+        ContentContainer.setMinimumSize(new java.awt.Dimension(1023, 640));
+        ContentContainer.setPreferredSize(new java.awt.Dimension(1023, 640));
+        ContentContainer.setLayout(new javax.swing.BoxLayout(ContentContainer, javax.swing.BoxLayout.Y_AXIS));
+
+        Header.setBorder(javax.swing.BorderFactory.createEmptyBorder(24, 40, 12, 40));
+        Header.setOpaque(false);
+        Header.setLayout(new javax.swing.BoxLayout(Header, javax.swing.BoxLayout.LINE_AXIS));
+
+        jPanel3.setAlignmentX(0.0F);
+        jPanel3.setMaximumSize(new java.awt.Dimension(11200, 23));
+        jPanel3.setOpaque(false);
+        jPanel3.setLayout(new javax.swing.BoxLayout(jPanel3, javax.swing.BoxLayout.LINE_AXIS));
+
+        btnVolverInicio.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        btnVolverInicio.setForeground(new java.awt.Color(89, 79, 76));
+        btnVolverInicio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/SMIcon_VolverAtras.png"))); // NOI18N
+        btnVolverInicio.setText("Inicio");
+        btnVolverInicio.setBorderPainted(false);
+        btnVolverInicio.setContentAreaFilled(false);
+        btnVolverInicio.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        btnVolverInicio.addActionListener(this::btnVolverInicioActionPerformed);
+        jPanel3.add(btnVolverInicio);
+
+        jLabel1.setForeground(new java.awt.Color(89, 79, 76));
+        jLabel1.setText("/ Consultas");
+        jLabel1.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 4, 0, 0));
+        jPanel3.add(jLabel1);
+
+        Header.add(jPanel3);
+
+        jPanel4.setAlignmentX(0.0F);
+        jPanel4.setOpaque(false);
+        jPanel4.setLayout(new javax.swing.BoxLayout(jPanel4, javax.swing.BoxLayout.LINE_AXIS));
+
+        jLabel2.setForeground(new java.awt.Color(89, 79, 76));
+        jLabel2.setText("Veterinaria | ");
+        jPanel4.add(jLabel2);
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(89, 79, 76));
+        jLabel3.setText("Calcio Milanesio");
+        jPanel4.add(jLabel3);
+
+        Header.add(jPanel4);
+
+        ContentContainer.add(Header);
+
+        Container.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 40, 0, 40));
+        Container.setOpaque(false);
+        Container.setLayout(new javax.swing.BoxLayout(Container, javax.swing.BoxLayout.LINE_AXIS));
+
+        SideElement.setBackground(new java.awt.Color(255, 255, 255));
+        SideElement.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(215, 210, 208), 1, true));
+        SideElement.setMaximumSize(new java.awt.Dimension(360, 32767));
+        SideElement.setMinimumSize(new java.awt.Dimension(360, 100));
+        SideElement.setOpaque(false);
+        SideElement.setPreferredSize(new java.awt.Dimension(360, 183));
+        SideElement.setLayout(new javax.swing.BoxLayout(SideElement, javax.swing.BoxLayout.Y_AXIS));
+
+        jPanel11.setBorder(javax.swing.BorderFactory.createEmptyBorder(16, 16, 16, 16));
+        jPanel11.setOpaque(false);
+        jPanel11.setLayout(new javax.swing.BoxLayout(jPanel11, javax.swing.BoxLayout.Y_AXIS));
+
+        IconTitleModule.setBorder(javax.swing.BorderFactory.createEmptyBorder(8, 0, 0, 0));
+        IconTitleModule.setOpaque(false);
+        IconTitleModule.setLayout(new javax.swing.BoxLayout(IconTitleModule, javax.swing.BoxLayout.Y_AXIS));
+
+        IconModule.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/IconCitas.png"))); // NOI18N
+        IconModule.setAlignmentX(0.5F);
+        IconTitleModule.add(IconModule);
+
+        TitleModule.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        TitleModule.setForeground(new java.awt.Color(42, 36, 34));
+        TitleModule.setText("Citas");
+        TitleModule.setAlignmentX(0.5F);
+        TitleModule.setBorder(javax.swing.BorderFactory.createEmptyBorder(4, 0, 0, 0));
+        IconTitleModule.add(TitleModule);
+
+        jPanel11.add(IconTitleModule);
+
+        jPanel15.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel15.setOpaque(false);
+        jPanel15.setLayout(new javax.swing.BoxLayout(jPanel15, javax.swing.BoxLayout.Y_AXIS));
+
+        jPanel16.setOpaque(false);
+
+        javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
+        jPanel16.setLayout(jPanel16Layout);
+        jPanel16Layout.setHorizontalGroup(
+            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 326, Short.MAX_VALUE)
+        );
+        jPanel16Layout.setVerticalGroup(
+            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jPanel15.add(jPanel16);
+
+        jScrollPane2.setBackground(new java.awt.Color(255, 255, 255));
+        jScrollPane2.setBorder(null);
+        jScrollPane2.setForeground(new java.awt.Color(255, 255, 255));
+        jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane2.setFocusable(false);
+        jScrollPane2.setMaximumSize(new java.awt.Dimension(32767, 320));
+        jScrollPane2.setMinimumSize(new java.awt.Dimension(296, 16));
+        jScrollPane2.setPreferredSize(new java.awt.Dimension(296, 320));
+        jScrollPane2.setVerifyInputWhenFocusTarget(false);
+
+        jPanel23.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel23.setDoubleBuffered(false);
+        jPanel23.setEnabled(false);
+        jPanel23.setFocusable(false);
+        jPanel23.setMaximumSize(new java.awt.Dimension(280, 320));
+        jPanel23.setMinimumSize(new java.awt.Dimension(280, 320));
+        jPanel23.setPreferredSize(new java.awt.Dimension(296, 320));
+        jPanel23.setRequestFocusEnabled(false);
+        jPanel23.setLayout(new javax.swing.BoxLayout(jPanel23, javax.swing.BoxLayout.Y_AXIS));
+
+        jPanel6.setMaximumSize(new java.awt.Dimension(32767, 140));
+        jPanel6.setMinimumSize(new java.awt.Dimension(260, 140));
+        jPanel6.setOpaque(false);
+        jPanel6.setPreferredSize(new java.awt.Dimension(296, 140));
+        jPanel6.setLayout(new java.awt.GridLayout(4, 1, 0, 8));
+
+        jPanel12.setMaximumSize(new java.awt.Dimension(2147483647, 28));
+        jPanel12.setMinimumSize(new java.awt.Dimension(162, 28));
+        jPanel12.setOpaque(false);
+        jPanel12.setPreferredSize(new java.awt.Dimension(243, 28));
+        jPanel12.setLayout(new javax.swing.BoxLayout(jPanel12, javax.swing.BoxLayout.LINE_AXIS));
+
+        jlNombre1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 13)); // NOI18N
+        jlNombre1.setForeground(new java.awt.Color(89, 79, 76));
+        jlNombre1.setText("Fecha");
+        jlNombre1.setAlignmentX(0.5F);
+        jlNombre1.setMaximumSize(new java.awt.Dimension(80, 16));
+        jlNombre1.setMinimumSize(new java.awt.Dimension(80, 16));
+        jlNombre1.setPreferredSize(new java.awt.Dimension(80, 16));
+        jPanel12.add(jlNombre1);
+
+        jDateChooser.setMinimumSize(new java.awt.Dimension(82, 28));
+        jDateChooser.setPreferredSize(new java.awt.Dimension(85, 28));
+        jPanel12.add(jDateChooser);
+
+        jPanel6.add(jPanel12);
+
+        jPanel8.setOpaque(false);
+        jPanel8.setLayout(new javax.swing.BoxLayout(jPanel8, javax.swing.BoxLayout.LINE_AXIS));
+
+        jlNombre.setFont(new java.awt.Font("Segoe UI Semibold", 0, 13)); // NOI18N
+        jlNombre.setForeground(new java.awt.Color(89, 79, 76));
+        jlNombre.setText("Hora");
+        jlNombre.setAlignmentX(0.5F);
+        jlNombre.setMaximumSize(new java.awt.Dimension(80, 16));
+        jlNombre.setMinimumSize(new java.awt.Dimension(80, 16));
+        jlNombre.setPreferredSize(new java.awt.Dimension(80, 16));
+        jPanel8.add(jlNombre);
+
+        jtfHora.setBackground(new java.awt.Color(251, 250, 249));
+        jtfHora.setForeground(new java.awt.Color(89, 79, 76));
+        jtfHora.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        jtfHora.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(215, 210, 208), 1, true));
+        jtfHora.setMaximumSize(new java.awt.Dimension(2147483647, 28));
+        jtfHora.setMinimumSize(new java.awt.Dimension(64, 28));
+        jtfHora.setPreferredSize(new java.awt.Dimension(71, 28));
+        jPanel8.add(jtfHora);
+
+        jPanel6.add(jPanel8);
+
+        jPanel18.setOpaque(false);
+        jPanel18.setLayout(new javax.swing.BoxLayout(jPanel18, javax.swing.BoxLayout.LINE_AXIS));
+
+        jlNombre4.setFont(new java.awt.Font("Segoe UI Semibold", 0, 13)); // NOI18N
+        jlNombre4.setForeground(new java.awt.Color(89, 79, 76));
+        jlNombre4.setText("Mascota");
+        jlNombre4.setAlignmentX(0.5F);
+        jlNombre4.setMaximumSize(new java.awt.Dimension(80, 16));
+        jlNombre4.setMinimumSize(new java.awt.Dimension(80, 16));
+        jlNombre4.setPreferredSize(new java.awt.Dimension(80, 16));
+        jPanel18.add(jlNombre4);
+
+        cbMascota.setMaximumSize(new java.awt.Dimension(32767, 28));
+        cbMascota.setMinimumSize(new java.awt.Dimension(72, 28));
+        cbMascota.setPreferredSize(new java.awt.Dimension(72, 28));
+        jPanel18.add(cbMascota);
+
+        jPanel6.add(jPanel18);
+
+        jPanel19.setOpaque(false);
+        jPanel19.setLayout(new javax.swing.BoxLayout(jPanel19, javax.swing.BoxLayout.LINE_AXIS));
+
+        jlNombre5.setFont(new java.awt.Font("Segoe UI Semibold", 0, 13)); // NOI18N
+        jlNombre5.setForeground(new java.awt.Color(89, 79, 76));
+        jlNombre5.setText("Servicio");
+        jlNombre5.setAlignmentX(0.5F);
+        jlNombre5.setMaximumSize(new java.awt.Dimension(80, 16));
+        jlNombre5.setMinimumSize(new java.awt.Dimension(80, 16));
+        jlNombre5.setPreferredSize(new java.awt.Dimension(80, 16));
+        jPanel19.add(jlNombre5);
+
+        cbServicio.setMaximumSize(new java.awt.Dimension(32767, 28));
+        cbServicio.setMinimumSize(new java.awt.Dimension(72, 28));
+        cbServicio.setPreferredSize(new java.awt.Dimension(72, 28));
+        jPanel19.add(cbServicio);
+
+        jPanel6.add(jPanel19);
+
+        jPanel23.add(jPanel6);
+
+        jPanel14.setBorder(javax.swing.BorderFactory.createEmptyBorder(4, 0, 0, 0));
+        jPanel14.setOpaque(false);
+        jPanel14.setPreferredSize(new java.awt.Dimension(243, 80));
+        jPanel14.setLayout(new javax.swing.BoxLayout(jPanel14, javax.swing.BoxLayout.LINE_AXIS));
+
+        jlNombre3.setFont(new java.awt.Font("Segoe UI Semibold", 0, 13)); // NOI18N
+        jlNombre3.setForeground(new java.awt.Color(89, 79, 76));
+        jlNombre3.setText("Motivo");
+        jlNombre3.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jlNombre3.setAlignmentX(0.5F);
+        jlNombre3.setMaximumSize(new java.awt.Dimension(80, 26444));
+        jlNombre3.setMinimumSize(new java.awt.Dimension(80, 16));
+        jlNombre3.setPreferredSize(new java.awt.Dimension(80, 16));
+        jPanel14.add(jlNombre3);
+
+        jtaMotivo.setColumns(20);
+        jtaMotivo.setRows(5);
+        jScrollPane3.setViewportView(jtaMotivo);
+
+        jPanel14.add(jScrollPane3);
+
+        jPanel23.add(jPanel14);
+
+        jScrollPane2.setViewportView(jPanel23);
+
+        jPanel15.add(jScrollPane2);
+
+        jPanel17.setOpaque(false);
+
+        javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
+        jPanel17.setLayout(jPanel17Layout);
+        jPanel17Layout.setHorizontalGroup(
+            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 326, Short.MAX_VALUE)
+        );
+        jPanel17Layout.setVerticalGroup(
+            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jPanel15.add(jPanel17);
+
+        jPanel11.add(jPanel15);
+
+        jPanel9.setBorder(javax.swing.BorderFactory.createEmptyBorder(12, 0, 0, 0));
+        jPanel9.setMaximumSize(new java.awt.Dimension(32767, 88));
+        jPanel9.setMinimumSize(new java.awt.Dimension(174, 88));
+        jPanel9.setOpaque(false);
+        jPanel9.setPreferredSize(new java.awt.Dimension(225, 96));
+        jPanel9.setLayout(new java.awt.GridLayout(2, 1, 0, 8));
+
+        btnLimpiar.setBackground(new java.awt.Color(242, 241, 241));
+        btnLimpiar.setFont(new java.awt.Font("Segoe UI Semibold", 0, 13)); // NOI18N
+        btnLimpiar.setForeground(new java.awt.Color(89, 79, 76));
+        btnLimpiar.setText("Limpiar");
+        btnLimpiar.setAlignmentX(0.5F);
+        btnLimpiar.setBorderPainted(false);
+        btnLimpiar.setFocusable(false);
+        btnLimpiar.setMaximumSize(new java.awt.Dimension(75000, 23));
+        btnLimpiar.setPreferredSize(new java.awt.Dimension(286, 40));
+        btnLimpiar.addActionListener(this::btnLimpiarActionPerformed);
+        jPanel9.add(btnLimpiar);
+
+        btnCrearRegistro.setBackground(new java.awt.Color(237, 142, 54));
+        btnCrearRegistro.setFont(new java.awt.Font("Segoe UI Semibold", 0, 13)); // NOI18N
+        btnCrearRegistro.setForeground(new java.awt.Color(255, 255, 255));
+        btnCrearRegistro.setText("Crear registro");
+        btnCrearRegistro.setAlignmentX(0.5F);
+        btnCrearRegistro.setBorderPainted(false);
+        btnCrearRegistro.setFocusPainted(false);
+        btnCrearRegistro.setFocusable(false);
+        btnCrearRegistro.setMaximumSize(new java.awt.Dimension(75000, 23));
+        btnCrearRegistro.setPreferredSize(new java.awt.Dimension(286, 40));
+        btnCrearRegistro.setRequestFocusEnabled(false);
+        btnCrearRegistro.setVerifyInputWhenFocusTarget(false);
+        btnCrearRegistro.addActionListener(this::btnCrearRegistroActionPerformed);
+        jPanel9.add(btnCrearRegistro);
+
+        jPanel11.add(jPanel9);
+
+        SideElement.add(jPanel11);
+
+        Container.add(SideElement);
+
+        TableContainer.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 16, 0, 0));
+        TableContainer.setOpaque(false);
+        TableContainer.setLayout(new javax.swing.BoxLayout(TableContainer, javax.swing.BoxLayout.Y_AXIS));
+
+        TableContainerBorder.setBackground(new java.awt.Color(255, 255, 255));
+        TableContainerBorder.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(215, 210, 208), 1, true));
+        TableContainerBorder.setLayout(new javax.swing.BoxLayout(TableContainerBorder, javax.swing.BoxLayout.LINE_AXIS));
+
+        TableContainerPadding.setBorder(javax.swing.BorderFactory.createEmptyBorder(16, 16, 16, 16));
+        TableContainerPadding.setOpaque(false);
+        TableContainerPadding.setLayout(new javax.swing.BoxLayout(TableContainerPadding, javax.swing.BoxLayout.Y_AXIS));
+
+        TablaConsultas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Id", "Síntomas", "Diagnóstico", "Tratamiento", "Observaciones", "Registro"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, true, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        TablaConsultas.setGridColor(new java.awt.Color(255, 255, 255));
+        TablaConsultas.setOpaque(false);
+        TablaConsultas.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(TablaConsultas);
+
+        TableContainerPadding.add(jScrollPane1);
+
+        TableFooter.setBorder(javax.swing.BorderFactory.createEmptyBorder(8, 0, 0, 0));
+        TableFooter.setOpaque(false);
+        TableFooter.setLayout(new javax.swing.BoxLayout(TableFooter, javax.swing.BoxLayout.LINE_AXIS));
+
+        jLabel5.setForeground(new java.awt.Color(89, 79, 66));
+        jLabel5.setText("23 registros");
+        jLabel5.setAlignmentX(0.5F);
+        jLabel5.setMaximumSize(new java.awt.Dimension(37000, 16));
+        TableFooter.add(jLabel5);
+
+        jPanel10.setMaximumSize(new java.awt.Dimension(240, 32));
+        jPanel10.setMinimumSize(new java.awt.Dimension(240, 32));
+        jPanel10.setOpaque(false);
+        jPanel10.setPreferredSize(new java.awt.Dimension(240, 32));
+        jPanel10.setLayout(new javax.swing.BoxLayout(jPanel10, javax.swing.BoxLayout.X_AXIS));
+
+        jPanel7.setMaximumSize(new java.awt.Dimension(32767, 32));
+        jPanel7.setMinimumSize(new java.awt.Dimension(0, 32));
+        jPanel7.setOpaque(false);
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 86, Short.MAX_VALUE)
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 32, Short.MAX_VALUE)
+        );
+
+        jPanel10.add(jPanel7);
+
+        btnEditar.setBackground(new java.awt.Color(231, 228, 227));
+        btnEditar.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        btnEditar.setForeground(new java.awt.Color(89, 79, 76));
+        btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/SmIcon_Editar.png"))); // NOI18N
+        btnEditar.setText("Editar");
+        btnEditar.setBorderPainted(false);
+        btnEditar.setMargin(new java.awt.Insets(6, 8, 6, 10));
+        btnEditar.addActionListener(this::btnEditarActionPerformed);
+        jPanel10.add(btnEditar);
+
+        jPanel5.setMaximumSize(new java.awt.Dimension(4, 32));
+        jPanel5.setMinimumSize(new java.awt.Dimension(4, 32));
+        jPanel5.setOpaque(false);
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 4, Short.MAX_VALUE)
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 32, Short.MAX_VALUE)
+        );
+
+        jPanel10.add(jPanel5);
+
+        btnEliminar.setBackground(new java.awt.Color(231, 228, 227));
+        btnEliminar.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        btnEliminar.setForeground(new java.awt.Color(89, 79, 76));
+        btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/SmIcon_Eliminar.png"))); // NOI18N
+        btnEliminar.setText("Eliminar");
+        btnEliminar.setBorderPainted(false);
+        btnEliminar.setMargin(new java.awt.Insets(6, 8, 6, 10));
+        btnEliminar.addActionListener(this::btnEliminarActionPerformed);
+        jPanel10.add(btnEliminar);
+
+        TableFooter.add(jPanel10);
+
+        TableContainerPadding.add(TableFooter);
+
+        TableContainerBorder.add(TableContainerPadding);
+
+        TableContainer.add(TableContainerBorder);
+
+        Container.add(TableContainer);
+
+        ContentContainer.add(Container);
+
+        Footer.setBorder(javax.swing.BorderFactory.createEmptyBorder(16, 40, 24, 40));
+        Footer.setOpaque(false);
+        Footer.setLayout(new javax.swing.BoxLayout(Footer, javax.swing.BoxLayout.LINE_AXIS));
+
+        jLabel4.setForeground(new java.awt.Color(69, 60, 57));
+        jLabel4.setText("Sistema Veterinario v1.0");
+        jLabel4.setMaximumSize(new java.awt.Dimension(56500, 16));
+        Footer.add(jLabel4);
+
+        FooterLinks.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        FooterLinks.setMaximumSize(new java.awt.Dimension(240, 20));
+        FooterLinks.setMinimumSize(new java.awt.Dimension(240, 20));
+        FooterLinks.setOpaque(false);
+        FooterLinks.setPreferredSize(new java.awt.Dimension(240, 20));
+        FooterLinks.setLayout(new javax.swing.BoxLayout(FooterLinks, javax.swing.BoxLayout.LINE_AXIS));
+
+        jPanel22.setAlignmentX(0.0F);
+        jPanel22.setMaximumSize(new java.awt.Dimension(32767, 20));
+        jPanel22.setMinimumSize(new java.awt.Dimension(0, 20));
+        jPanel22.setOpaque(false);
+
+        javax.swing.GroupLayout jPanel22Layout = new javax.swing.GroupLayout(jPanel22);
+        jPanel22.setLayout(jPanel22Layout);
+        jPanel22Layout.setHorizontalGroup(
+            jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 131, Short.MAX_VALUE)
+        );
+        jPanel22Layout.setVerticalGroup(
+            jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 20, Short.MAX_VALUE)
+        );
+
+        FooterLinks.add(jPanel22);
+
+        btnSaberMas.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        btnSaberMas.setForeground(new java.awt.Color(69, 60, 57));
+        btnSaberMas.setText("Saber más");
+        btnSaberMas.setBorderPainted(false);
+        btnSaberMas.setContentAreaFilled(false);
+        btnSaberMas.setFocusPainted(false);
+        btnSaberMas.setFocusable(false);
+        btnSaberMas.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        FooterLinks.add(btnSaberMas);
+
+        jPanel21.setAlignmentX(0.0F);
+        jPanel21.setMaximumSize(new java.awt.Dimension(8, 20));
+        jPanel21.setMinimumSize(new java.awt.Dimension(8, 20));
+        jPanel21.setOpaque(false);
+
+        javax.swing.GroupLayout jPanel21Layout = new javax.swing.GroupLayout(jPanel21);
+        jPanel21.setLayout(jPanel21Layout);
+        jPanel21Layout.setHorizontalGroup(
+            jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 8, Short.MAX_VALUE)
+        );
+        jPanel21Layout.setVerticalGroup(
+            jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 20, Short.MAX_VALUE)
+        );
+
+        FooterLinks.add(jPanel21);
+
+        btnSoporte.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        btnSoporte.setForeground(new java.awt.Color(69, 60, 57));
+        btnSoporte.setText("Soporte");
+        btnSoporte.setBorderPainted(false);
+        btnSoporte.setContentAreaFilled(false);
+        btnSoporte.setFocusPainted(false);
+        btnSoporte.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        FooterLinks.add(btnSoporte);
+
+        Footer.add(FooterLinks);
+
+        ContentContainer.add(Footer);
+
+        javax.swing.GroupLayout ContentLayout = new javax.swing.GroupLayout(Content);
+        Content.setLayout(ContentLayout);
+        ContentLayout.setHorizontalGroup(
+            ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ContentLayout.createSequentialGroup()
+                .addGap(1, 1, 1)
+                .addComponent(ContentContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        ContentLayout.setVerticalGroup(
+            ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(ContentContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        MainContent.add(Content);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(MainContent, javax.swing.GroupLayout.DEFAULT_SIZE, 1080, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(MainContent, javax.swing.GroupLayout.DEFAULT_SIZE, 640, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnSidebarClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSidebarClientesActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        Clientes clientes = new Clientes();
+        clientes.setVisible(true);
+    }//GEN-LAST:event_btnSidebarClientesActionPerformed
+
+    private void btnSidebarMascotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSidebarMascotasActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        Mascotas mascotas = new Mascotas();
+        mascotas.setVisible(true);
+    }//GEN-LAST:event_btnSidebarMascotasActionPerformed
+
+    private void btnSidebarServiciosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSidebarServiciosActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        Servicios servicios = new Servicios();
+        servicios.setVisible(true);
+    }//GEN-LAST:event_btnSidebarServiciosActionPerformed
+
+    private void btnVolverInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverInicioActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        Inicio inicio = new Inicio();
+        inicio.setVisible(true);
+    }//GEN-LAST:event_btnVolverInicioActionPerformed
+
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        // TODO add your handling code here:
+        limpiarCampos();
+    }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void btnCrearRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearRegistroActionPerformed
+        // TODO add your handling code here:
+        java.util.Date fechaSeleccionada = jDateChooser.getDate();
+        String hora = jtfHora.getText().trim();
+        int mascota = Integer.parseInt(cbMascota.getSelectedItem().toString());
+        int servicio = Integer.parseInt(cbServicio.getSelectedItem().toString());
+        String motivo = jtaMotivo.getText().trim();
+
+        if (hora.isEmpty() ||
+            motivo.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor complete todos los campos obligatorios.");
+            return;
+        }
+
+        if (fechaSeleccionada == null) {
+            JOptionPane.showMessageDialog(this, "Por favor seleccione una fecha de registro.");
+            return;
+        }
+
+        java.sql.Date fecha = new java.sql.Date(fechaSeleccionada.getTime());
+
+        CitasPOJO cita = new CitasPOJO();
+        cita.setFecha(fecha);
+        cita.setHora(hora);
+        cita.setIdMascota(mascota);
+        cita.setIdServicio(servicio);
+        cita.setMotivo(motivo);
+
+        if (estado == 1) {
+            // Modo Crear
+            if (citasDAO.registrarCita(cita)) {
+                limpiarCampos();
+                listarCitas();
+            }
+        } else {
+            // Modo Editar (utiliza el id_actual que guardó btnEditar)
+            cita.setIdCita(id_actual);
+            if (citasDAO.modificarCita(cita)) {
+                JOptionPane.showMessageDialog(this, "Consulta actualizada correctamente.");
+                limpiarCampos(); // limpiarCampos() ya regresa estado a 1 e id_actual a -1
+                listarCitas();
+            }
+        }
+    }//GEN-LAST:event_btnCrearRegistroActionPerformed
+
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        // TODO add your handling code here:
+        int fila = TablaConsultas.getSelectedRow();
+
+        // Si no ha seleccionado ninguna fila de la tabla, avisamos y salimos
+        if (fila == -1) {
+            JOptionPane.showMessageDialog(this, "Seleccione una consulta de la tabla para editar.");
+            return;
+        }
+
+        // 1. Guardamos el ID que está en la columna 0 de la fila seleccionada
+        id_actual = Integer.parseInt(TablaConsultas.getValueAt(fila, 0).toString());
+
+        // 2. Cambiamos el modo a edición
+        estado = 2;
+        btnCrearRegistro.setText("Guardar cambios");
+
+        // 3. Pasamos los datos a las cajas de texto
+        jtfHora.setText(TablaConsultas.getValueAt(fila, 1).toString());
+        cbMascota.setSelectedIndex(Integer.parseInt(TablaConsultas.getValueAt(fila, 2).toString()));
+        cbServicio.setSelectedIndex(Integer.parseInt(TablaConsultas.getValueAt(fila, 3).toString()));
+        jtaMotivo.setText(TablaConsultas.getValueAt(fila, 2).toString());
+
+        // 4. Cargamos la fecha en el JCalendar
+        Object valorFecha = TablaConsultas.getValueAt(fila, 4);
+        if (valorFecha != null && !valorFecha.toString().trim().isEmpty()) {
+            try {
+                java.text.SimpleDateFormat formato = new java.text.SimpleDateFormat("yyyy-MM-dd");
+                java.util.Date fechaParseada = formato.parse(valorFecha.toString().trim());
+                jDateChooser.setDate(fechaParseada);
+            } catch (java.text.ParseException e) {
+                System.err.println("Error al parsear la fecha: " + e.getMessage());
+                jDateChooser.setDate(null);
+            }
+        } else {
+            jDateChooser.setDate(null);
+        }
+    }//GEN-LAST:event_btnEditarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        // TODO add your handling code here:
+        int fila = TablaConsultas.getSelectedRow();
+
+        // 1. Validar si hay una fila seleccionada
+        if (fila == -1) {
+            JOptionPane.showMessageDialog(this, "Por favor seleccione un cliente de la tabla para eliminar.");
+            return;
+        }
+
+        // 2. Obtener el ID del cliente (columna 0) y su nombre (columna 1) para el mensaje
+        int idEliminar = Integer.parseInt(TablaConsultas.getValueAt(fila, 0).toString());
+        String nombreCliente = TablaConsultas.getValueAt(fila, 1).toString();
+
+        // 3. Confirmar la eliminación
+        int confirmacion = JOptionPane.showConfirmDialog(
+            this,
+            "¿Está seguro de eliminar al cliente " + nombreCliente + "?",
+            "Confirmar eliminación",
+            JOptionPane.YES_NO_OPTION,
+            JOptionPane.WARNING_MESSAGE
+        );
+
+        // 4. Si el usuario confirma (presiona Sí)
+        if (confirmacion == JOptionPane.YES_OPTION) {
+            if (citasDAO.eliminarCita(idEliminar)) {
+                limpiarCampos();   // Restablece los formularios por si estaba cargado en edición
+                listarCitas();  // Vuelve a consultar la base de datos y refresca la tabla
+            }
+        }
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnSidebarConsultasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSidebarConsultasActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        Consultas consultas = new Consultas();
+        consultas.setVisible(true);
+    }//GEN-LAST:event_btnSidebarConsultasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -53,16 +908,6 @@ public class Citas extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
-        }
         //</editor-fold>
 
         /* Create and display the form */
@@ -70,5 +915,75 @@ public class Citas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel Container;
+    private javax.swing.JPanel Content;
+    private javax.swing.JPanel ContentContainer;
+    private javax.swing.JPanel Footer;
+    private javax.swing.JPanel FooterLinks;
+    private javax.swing.JPanel Header;
+    private javax.swing.JLabel IconModule;
+    private javax.swing.JPanel IconTitleModule;
+    private javax.swing.JLabel LogoIcon;
+    private javax.swing.JPanel MainContent;
+    private javax.swing.JPanel SideElement;
+    private javax.swing.JPanel Sidebar;
+    private javax.swing.JLabel SpaceSidebar;
+    private javax.swing.JTable TablaConsultas;
+    private javax.swing.JPanel TableContainer;
+    private javax.swing.JPanel TableContainerBorder;
+    private javax.swing.JPanel TableContainerPadding;
+    private javax.swing.JPanel TableFooter;
+    private javax.swing.JLabel TitleModule;
+    private javax.swing.JButton btnCrearRegistro;
+    private javax.swing.JButton btnEditar;
+    private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton btnLimpiar;
+    private javax.swing.JButton btnSaberMas;
+    private javax.swing.JButton btnSidebarCitas;
+    private javax.swing.JButton btnSidebarClientes;
+    private javax.swing.JButton btnSidebarConsultas;
+    private javax.swing.JButton btnSidebarMascotas;
+    private javax.swing.JButton btnSidebarServicios;
+    private javax.swing.JButton btnSoporte;
+    private javax.swing.JButton btnVolverInicio;
+    private javax.swing.JComboBox<CitasPOJO> cbMascota;
+    private javax.swing.JComboBox<ServiciosPOJO> cbServicio;
+    private com.toedter.calendar.JDateChooser jDateChooser;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel12;
+    private javax.swing.JPanel jPanel14;
+    private javax.swing.JPanel jPanel15;
+    private javax.swing.JPanel jPanel16;
+    private javax.swing.JPanel jPanel17;
+    private javax.swing.JPanel jPanel18;
+    private javax.swing.JPanel jPanel19;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel21;
+    private javax.swing.JPanel jPanel22;
+    private javax.swing.JPanel jPanel23;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JLabel jlNombre;
+    private javax.swing.JLabel jlNombre1;
+    private javax.swing.JLabel jlNombre3;
+    private javax.swing.JLabel jlNombre4;
+    private javax.swing.JLabel jlNombre5;
+    private javax.swing.JTextArea jtaMotivo;
+    private javax.swing.JTextField jtfHora;
     // End of variables declaration//GEN-END:variables
 }
