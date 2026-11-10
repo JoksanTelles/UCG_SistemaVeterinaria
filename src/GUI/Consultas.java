@@ -1,6 +1,8 @@
 package GUI;
 
+import DAO.CitasDAO;
 import DAO.ConsultasDAO;
+import POJO.CitasPOJO;
 import POJO.ConsultasPOJO;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -18,9 +20,8 @@ public class Consultas extends javax.swing.JFrame {
         
         this.setLocationRelativeTo(this);
         listarConsultas();
+        cargarCitasComboBox();
     }
-    
-    // gh
     
     public void listarConsultas() {
         List<ConsultasPOJO> consulta = consultasDAO.listarConsultas();
@@ -28,20 +29,22 @@ public class Consultas extends javax.swing.JFrame {
         modelo.setRowCount(0);
 
         for (int i = 0; i< consulta.size(); i++) {
-            Object[] fila = new Object[6];
+            Object[] fila = new Object[7];
             
             fila[0] = consulta.get(i).getIdConsulta();
-            fila[1] = consulta.get(i).getSintomas();
-            fila[2] = consulta.get(i).getDiagnostico();
-            fila[3] = consulta.get(i).getTratamiento();
-            fila[4] = consulta.get(i).getObservaciones();
-            fila[5] = consulta.get(i).getFechaConsulta();
+            fila[1] = consulta.get(i).getIdCita();
+            fila[2] = consulta.get(i).getSintomas();
+            fila[3] = consulta.get(i).getDiagnostico();
+            fila[4] = consulta.get(i).getTratamiento();
+            fila[5] = consulta.get(i).getObservaciones();
+            fila[6] = consulta.get(i).getFechaConsulta();
 
             modelo.addRow(fila);
         }
     }
     
     public void limpiarCampos() {
+        cbCita.setSelectedIndex(-1);
         jtfSintomas.setText("");
         jtfDiagnostico.setText("");
         jtfTratamiento.setText("");
@@ -54,6 +57,17 @@ public class Consultas extends javax.swing.JFrame {
         
         id_actual = -1;
         estado = 1;
+    }
+    
+    public void cargarCitasComboBox() {
+        CitasDAO citaDAO = new CitasDAO();
+        List<CitasPOJO> listaCitas = citaDAO.listarCitas();
+        cbCita.removeAllItems();
+
+        for(CitasPOJO cita : listaCitas) {
+            cbCita.addItem(cita); // Se llena directamente con el POJO gracias al toString()
+        }
+        cbCita.setSelectedIndex(-1);
     }
 
     /**
@@ -96,6 +110,9 @@ public class Consultas extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jPanel23 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
+        jPanel18 = new javax.swing.JPanel();
+        jlNombre4 = new javax.swing.JLabel();
+        cbCita = new javax.swing.JComboBox<>();
         jPanel8 = new javax.swing.JPanel();
         jlNombre = new javax.swing.JLabel();
         jtfSintomas = new javax.swing.JTextField();
@@ -352,7 +369,24 @@ public class Consultas extends javax.swing.JFrame {
         jPanel6.setMinimumSize(new java.awt.Dimension(260, 208));
         jPanel6.setOpaque(false);
         jPanel6.setPreferredSize(new java.awt.Dimension(296, 96));
-        jPanel6.setLayout(new java.awt.GridLayout(3, 1, 0, 8));
+        jPanel6.setLayout(new java.awt.GridLayout(4, 1, 0, 8));
+
+        jPanel18.setOpaque(false);
+        jPanel18.setLayout(new javax.swing.BoxLayout(jPanel18, javax.swing.BoxLayout.LINE_AXIS));
+
+        jlNombre4.setFont(new java.awt.Font("Segoe UI Semibold", 0, 13)); // NOI18N
+        jlNombre4.setForeground(new java.awt.Color(89, 79, 76));
+        jlNombre4.setText("Cita");
+        jlNombre4.setAlignmentX(0.5F);
+        jlNombre4.setMaximumSize(new java.awt.Dimension(80, 16));
+        jlNombre4.setMinimumSize(new java.awt.Dimension(80, 16));
+        jlNombre4.setPreferredSize(new java.awt.Dimension(80, 16));
+        jPanel18.add(jlNombre4);
+
+        cbCita.setBackground(new java.awt.Color(251, 250, 249));
+        jPanel18.add(cbCita);
+
+        jPanel6.add(jPanel18);
 
         jPanel8.setOpaque(false);
         jPanel8.setLayout(new javax.swing.BoxLayout(jPanel8, javax.swing.BoxLayout.LINE_AXIS));
@@ -557,11 +591,11 @@ public class Consultas extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Id", "Síntomas", "Diagnóstico", "Tratamiento", "Observaciones", "Registro"
+                "Id", "Cita", "Síntomas", "Diagnóstico", "Tratamiento", "Observaciones", "Registro"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, true, false
+                false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -572,6 +606,10 @@ public class Consultas extends javax.swing.JFrame {
         TablaConsultas.setOpaque(false);
         TablaConsultas.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(TablaConsultas);
+        if (TablaConsultas.getColumnModel().getColumnCount() > 0) {
+            TablaConsultas.getColumnModel().getColumn(0).setPreferredWidth(12);
+            TablaConsultas.getColumnModel().getColumn(1).setPreferredWidth(12);
+        }
 
         TableContainerPadding.add(jScrollPane1);
 
@@ -813,6 +851,9 @@ public class Consultas extends javax.swing.JFrame {
         java.sql.Date fecha = new java.sql.Date(fechaSeleccionada.getTime());
 
         ConsultasPOJO consulta = new ConsultasPOJO();
+        CitasPOJO citaSeleccionada = (CitasPOJO) cbCita.getSelectedItem();
+        
+        consulta.setIdCita(citaSeleccionada.getIdCita());
         consulta.setSintomas(sintomas);
         consulta.setDiagnostico(diagnostico);
         consulta.setTratamiento(tratamiento);
@@ -840,26 +881,22 @@ public class Consultas extends javax.swing.JFrame {
         // TODO add your handling code here:
         int fila = TablaConsultas.getSelectedRow();
 
-        // Si no ha seleccionado ninguna fila de la tabla, avisamos y salimos
         if (fila == -1) {
             JOptionPane.showMessageDialog(this, "Seleccione una consulta de la tabla para editar.");
             return;
         }
 
-        // 1. Guardamos el ID que está en la columna 0 de la fila seleccionada
         id_actual = Integer.parseInt(TablaConsultas.getValueAt(fila, 0).toString());
 
-        // 2. Cambiamos el modo a edición
         estado = 2;
         btnCrearRegistro.setText("Guardar cambios");
 
-        // 3. Pasamos los datos a las cajas de texto
-        jtfSintomas.setText(TablaConsultas.getValueAt(fila, 1).toString());
-        jtfDiagnostico.setText(TablaConsultas.getValueAt(fila, 2).toString());
-        jtfTratamiento.setText(TablaConsultas.getValueAt(fila, 3).toString());
+        jtfSintomas.setText(TablaConsultas.getValueAt(fila, 2).toString());
+        jtfDiagnostico.setText(TablaConsultas.getValueAt(fila, 3).toString());
+        jtfTratamiento.setText(TablaConsultas.getValueAt(fila, 4).toString());
+        jtaObservaciones.setText(TablaConsultas.getValueAt(fila, 5).toString());
 
-        // 4. Cargamos la fecha en el JCalendar
-        Object valorFecha = TablaConsultas.getValueAt(fila, 4);
+        Object valorFecha = TablaConsultas.getValueAt(fila, 6);
         if (valorFecha != null && !valorFecha.toString().trim().isEmpty()) {
             try {
                 java.text.SimpleDateFormat formato = new java.text.SimpleDateFormat("yyyy-MM-dd");
@@ -872,23 +909,29 @@ public class Consultas extends javax.swing.JFrame {
         } else {
             jCalRegistro.setDate(null);
         }
+        
+        int idCitaTabla = Integer.parseInt(TablaConsultas.getValueAt(fila, 1).toString());
+        for (int i = 0; i < cbCita.getItemCount(); i++) {
+            CitasPOJO cita = cbCita.getItemAt(i);
+            if (cita.getIdCita() == idCitaTabla) {
+                cbCita.setSelectedIndex(i);
+                break;
+            }
+        }
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
         int fila = TablaConsultas.getSelectedRow();
 
-        // 1. Validar si hay una fila seleccionada
         if (fila == -1) {
             JOptionPane.showMessageDialog(this, "Por favor seleccione un cliente de la tabla para eliminar.");
             return;
         }
 
-        // 2. Obtener el ID del cliente (columna 0) y su nombre (columna 1) para el mensaje
         int idEliminar = Integer.parseInt(TablaConsultas.getValueAt(fila, 0).toString());
         String nombreCliente = TablaConsultas.getValueAt(fila, 1).toString();
 
-        // 3. Confirmar la eliminación
         int confirmacion = JOptionPane.showConfirmDialog(
             this,
             "¿Está seguro de eliminar al cliente " + nombreCliente + "?",
@@ -897,11 +940,10 @@ public class Consultas extends javax.swing.JFrame {
             JOptionPane.WARNING_MESSAGE
         );
 
-        // 4. Si el usuario confirma (presiona Sí)
         if (confirmacion == JOptionPane.YES_OPTION) {
             if (consultasDAO.eliminarConsulta(idEliminar)) {
-                limpiarCampos();   // Restablece los formularios por si estaba cargado en edición
-                listarConsultas();  // Vuelve a consultar la base de datos y refresca la tabla
+                limpiarCampos();
+                listarConsultas();
             }
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
@@ -967,6 +1009,7 @@ public class Consultas extends javax.swing.JFrame {
     private javax.swing.JButton btnSidebarServicios;
     private javax.swing.JButton btnSoporte;
     private javax.swing.JButton btnVolverInicio;
+    private javax.swing.JComboBox<CitasPOJO> cbCita;
     private com.toedter.calendar.JCalendar jCalRegistro;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -982,6 +1025,7 @@ public class Consultas extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel17;
+    private javax.swing.JPanel jPanel18;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel20;
     private javax.swing.JPanel jPanel21;
@@ -1001,6 +1045,7 @@ public class Consultas extends javax.swing.JFrame {
     private javax.swing.JLabel jlNombre1;
     private javax.swing.JLabel jlNombre2;
     private javax.swing.JLabel jlNombre3;
+    private javax.swing.JLabel jlNombre4;
     private javax.swing.JLabel jlNombre6;
     private javax.swing.JTextArea jtaObservaciones;
     private javax.swing.JTextField jtfDiagnostico;

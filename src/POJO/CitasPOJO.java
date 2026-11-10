@@ -69,4 +69,9 @@ public class CitasPOJO {
     public void setIdServicio(int idServicio) {
         this.idServicio = idServicio;
     }
+    
+    @Override
+    public String toString() {
+        return "#" + idCita + " - " + motivo + " (" + fecha + ", " + hora + ")";
+    }
 }
